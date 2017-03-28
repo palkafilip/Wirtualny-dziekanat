@@ -6,10 +6,10 @@ public class Student
 	private String nazwisko;
 	private String adres;
 	private String email;
-	private long pesel;
-	private int numerTel;
+	private String pesel;
+	private String numerTel;
 	
-	public Student(String imie, String nazwisko, String adres, String email, long pesel, int numerTel)
+	public Student(String imie, String nazwisko, String adres, String email, String pesel, String numerTel)
 	{
 		super();
 		this.imie = imie;
@@ -51,11 +51,11 @@ public class Student
 	{
 		this.email = email;
 	}
-	public long getPesel()
+	public String getPesel()
 	{
 		return pesel;
 	}
-	public void setPesel(long pesel)
+	public void setPesel(String pesel)
 	{
 		this.pesel = pesel;
 	}
@@ -65,11 +65,11 @@ public class Student
 		return "Student [imie=" + imie + ", nazwisko=" + nazwisko + ", adres=" + adres + ", email=" + email + ", pesel="
 				+ pesel + ", numerTel=" + numerTel + "]";
 	}
-	public int getNumerTel()
+	public String getNumerTel()
 	{
 		return numerTel;
 	}
-	public void setNumerTel(int numerTel)
+	public void setNumerTel(String numerTel)
 	{
 		this.numerTel = numerTel;
 	}

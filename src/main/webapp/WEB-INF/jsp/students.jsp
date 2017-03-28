@@ -19,6 +19,8 @@
 						<div class="caption">
 							<h3>${student.imie}</h3>
 							<p>${student.nazwisko}</p>
+							<p>${student.adres}</p>
+							<p>${student.pesel}</p>
 							<p>${student.email}</p>
 						</div>
 					</div>
