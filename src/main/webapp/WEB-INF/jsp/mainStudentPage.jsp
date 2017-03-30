@@ -10,10 +10,8 @@
 </head>
 <body>
 	<div class="text-center jumbotron">
-	  <h1>Wirtualny dziekanat</h1>
-    <h3><a href="students.html">Kliknij, aby zobaczyć listę studentów</a></h3>
-    <h3><a href="students/logIn.html">Kliknij, aby się zalogować</a></h3>
-    
+	  <h1>Dziękujemy za zalogowanie ${activeStudent.imie}</h1>
+    <h3><a href="">Kliknij, aby zobaczyć listę studentów</a></h3>
 	</div>
 </body>
 </html>

@@ -21,4 +21,15 @@ public class StudentServiceImpl implements StudentService
 		return studentRepository.getAllStudents();
 	}
 
+	public void addStudent(Student student)
+	{
+		studentRepository.addStudent(student);
+		
+	}
+
+	public Student getStudentByPesel(String pesel)
+	{
+		return studentRepository.getStudentByPesel(pesel);
+	}
+
 }

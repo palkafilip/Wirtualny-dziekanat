@@ -1,4 +1,5 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,14 +13,13 @@
 <body>
 	<div class="container">
 		<h1 class="header">Zaloguj się do dziekanatu</h1>
-		<form class="form" action="index.html" method="post">
+		<form:form method="POST" action="logIn" modelAttribute="activeStudent">
 			<div class="form-container">
-				<label for="login">Login</label> 
-				<input type="text" id="login" name="login"> 
-					<label for="password">Hasło</label> 
-					<input type="text" id="password" name="password">
+				<form:label path="pesel">Podaj pesel</form:label>
+				<form:input path="pesel" />
+				<input type="submit" value="Zaloguj"/>
 			</div>
-		</form>
+		</form:form>
 
 	</div>
 </body>

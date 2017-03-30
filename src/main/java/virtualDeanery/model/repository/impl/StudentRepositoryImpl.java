@@ -16,49 +16,111 @@ import virtualDeanery.model.Student;
 import virtualDeanery.model.repository.StudentRepository;
 
 @Repository
-public class StudentRepositoryImpl implements StudentRepository {
+public class StudentRepositoryImpl implements StudentRepository
+{
 
 	@Autowired
 	DataSource datasource;
 	private List<Student> listOfStudents = new ArrayList<Student>();
 
-	public List<Student> getAllStudents() {
+	public List<Student> getAllStudents()
+	{
 		listOfStudents.clear();
-		
+
 		String sql = "SELECT * FROM student";
 
 		Connection conn = null;
 
-		try {
-			
+		try
+		{
+
 			conn = datasource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			Student student = null;
 			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()){
-					student = new Student(rs.getString("imie"), rs.getString("nazwisko"), rs.getString("adres"),
-							rs.getString("email"), rs.getString("pesel"), rs.getString("numerTel"));
-					listOfStudents.add(student);
+
+			while (rs.next())
+			{
+				student = new Student(rs.getString("imie"), rs.getString("nazwisko"), rs.getString("adres"),
+						rs.getString("email"), rs.getString("pesel"), rs.getString("numerTel"));
+				listOfStudents.add(student);
 			}
-			
-			
+
 			rs.close();
 			ps.close();
-			
-			
-		} catch (SQLException e) {
+
+		}
+		catch (SQLException e)
+		{
 			throw new RuntimeException(e);
-		} finally {
-			if (conn != null) {
-				try {
+		}
+		finally
+		{
+			if (conn != null)
+			{
+				try
+				{
 					conn.close();
-				} catch (SQLException e) {
+				}
+				catch (SQLException e)
+				{
 				}
 			}
 		}
 
 		return listOfStudents;
+	}
+
+	public void addStudent(Student student)
+	{
+		listOfStudents.add(student);
+	}
+
+	public Student getStudentByPesel(String pesel)
+	{
+		String sql = "Select * from student where pesel = " + pesel;
+
+		Connection conn = null;
+		Student student = null;
+		
+		try
+		{
+
+			conn = datasource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next())
+			{
+				student = new Student(rs.getString("imie"), rs.getString("nazwisko"), rs.getString("adres"),
+						rs.getString("email"), rs.getString("pesel"), rs.getString("numerTel"));
+			}
+			else
+				return null;
+
+			rs.close();
+			ps.close();
+
+		}
+		catch (SQLException e)
+		{
+			throw new RuntimeException(e);
+		}
+		finally
+		{
+			if (conn != null)
+			{
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+				}
+			}
+		}
+
+		return student;
 	}
 
 }

@@ -9,6 +9,11 @@ public class Student
 	private String pesel;
 	private String numerTel;
 	
+	
+	public Student()
+	{
+		
+	}
 	public Student(String imie, String nazwisko, String adres, String email, String pesel, String numerTel)
 	{
 		super();

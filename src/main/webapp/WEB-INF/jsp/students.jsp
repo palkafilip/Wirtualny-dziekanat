@@ -27,6 +27,8 @@
 				</div>
 			</c:forEach>
 		</div>
+		<h2><a href="students/add.html">Dodaj nowego studenta do bazy</a></h2>
 	</section>
+	
 </body>
 </html>
