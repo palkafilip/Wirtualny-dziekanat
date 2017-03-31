@@ -9,4 +9,5 @@ public interface StudentService
 	List <Student> getAllStudents();
 	void addStudent(Student student);
 	Student getStudentByPesel(String pesel);
+	Student loginStudent(String pesel, String imie);
 }

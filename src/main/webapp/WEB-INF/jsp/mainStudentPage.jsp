@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="text-center jumbotron">
-	  <h1>Dziękujemy za zalogowanie ${activeStudent.imie}</h1>
+	  <h1>Dziękujemy za zalogowanie ${loggedInStudent.imie}</h1>
     <h3><a href="">Kliknij, aby zobaczyć listę studentów</a></h3>
 	</div>
 </body>

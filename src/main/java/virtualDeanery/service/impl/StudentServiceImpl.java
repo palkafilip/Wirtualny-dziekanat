@@ -32,4 +32,13 @@ public class StudentServiceImpl implements StudentService
 		return studentRepository.getStudentByPesel(pesel);
 	}
 
+	public Student loginStudent(String pesel, String imie)
+	{
+		Student student = getStudentByPesel(pesel);
+		if(student != null && student.getImie().equals(imie))
+			return student;
+		
+		return null;
+	}
+
 }
