@@ -7,11 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Witaj</title>
 <link rel='stylesheet' href='<c:url value="/resources/css/style.css" />' type='text/css' media='all' />
+<link rel='stylesheet' href='<c:url value="/resources/css/bootstrap.min.css" />' type='text/css' media='all' />
+
 </head>
 <body>
-	<div class="text-center jumbotron">
-	  <h1>Dziękujemy za zalogowanie ${loggedInStudent.imie}</h1>
-    <h3><a href="">Kliknij, aby zobaczyć listę studentów</a></h3>
+	<div class="container">
+	  <h1>Dziękujemy za zalogowanie, ${loggedInStudent.imie}</h1>
+    <h3><a href="students">Kliknij, aby zobaczyć listę studentów</a></h3>
 	</div>
 </body>
 </html>
