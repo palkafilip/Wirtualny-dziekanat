@@ -2,9 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
+    	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
         http://www.springframework.org/schema/mvc 
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context 
@@ -18,18 +22,36 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/deanery" />
-		<property name="username" value="root" />
-		<property name="password" value="" />
-	</bean>
-	
-	
+		
+		
 	<mvc:annotation-driven />
 	
 	<mvc:resources location="/resources/" mapping="/resources/**" />
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	    <property name="url" value="jdbc:mysql://localhost:3306/deanery"/>
+	    <property name="username" value="root"/>
+	    <property name="password" value=""/>
+	</bean>
+	
+	<bean id="sessionFactory"
+	    class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource" />
+	    <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+	</bean>
+	
+	
+	<tx:annotation-driven />
+	<bean id="transactionManager"
+	    class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	    <property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="userRepository" class="virtualDeanery.model.repository.impl.UserRepositoryImpl">
+    <constructor-arg>
+        <ref bean="sessionFactory" />
+    </constructor-arg>
+	</bean>
 	
 </beans>
