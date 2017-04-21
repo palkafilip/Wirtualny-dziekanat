@@ -32,5 +32,8 @@
         <property name="phone" type="java.lang.String">
             <column name="PHONE" />
         </property>
+        <property name="account_type" type="java.lang.String">
+            <column name="ACCOUNT_TYPE" />
+        </property>
     </class>
 </hibernate-mapping>

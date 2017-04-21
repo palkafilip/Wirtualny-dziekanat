@@ -9,38 +9,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import virtualDeanery.model.Student;
-import virtualDeanery.service.StudentService;
+import virtualDeanery.model.User;
+import virtualDeanery.service.UserService;
 
 @Controller
 public class LoginController
 {
-	
+
 	@Autowired
-	StudentService studentService;
-	
-	@RequestMapping( value="/login", method = RequestMethod.GET)
+	UserService userService;
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLoginForm()
 	{
 		return "loginPage";
 	}
-	
-	@RequestMapping( value="/login", method = RequestMethod.POST)
-	public String verifyLogin(@RequestParam String pesel, @RequestParam String imie, HttpSession session, Model model)
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String verifyLogin(@RequestParam int niu, @RequestParam String password, HttpSession session, Model model)
 	{
-		
-		Student student = studentService.loginStudent(pesel, imie);
-		
-		if(student == null)
+		User user = userService.loginUser(niu, password);
+
+		if (user == null)
 		{
 			model.addAttribute("loginError", "Wyst¹pi³ b³ad przy logowaniu, spróbuj ponownie");
 			return "loginPage";
 		}
-			
-		
-		session.setAttribute("loggedInStudent", student);
+
+		session.setAttribute("loggedInUser", user);
 		return "mainStudentPage";
-		
+
 	}
 
 }

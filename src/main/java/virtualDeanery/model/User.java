@@ -10,6 +10,9 @@ public class User {
     private String post_code;
     private String email;
     private String phone;
+    private String account_type;
+
+    
 	public int getId() {
 		return niu;
 	}
@@ -60,6 +63,21 @@ public class User {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public String getAccount_type()
+	{
+		return account_type;
+	}
+	public void setAccount_type(String account_type)
+	{
+		this.account_type = account_type;
+	}
+	@Override
+	public String toString()
+	{
+		return "User [niu=" + niu + ", firstname=" + firstname + ", lastname=" + lastname + ", pesel=" + pesel
+				+ ", address=" + address + ", city=" + city + ", post_code=" + post_code + ", email=" + email
+				+ ", phone=" + phone + ", account_type=" + account_type + "]";
 	}	
     
 }

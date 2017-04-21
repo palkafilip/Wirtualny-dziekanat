@@ -10,8 +10,6 @@ public class HomeController
 	@RequestMapping("/")
 	public String welcome(Model model)
 	{
-//		model.addAttribute("witaj", "witaj na naszej stronie");
-		
 		return "redirect:/login";
 	}
 

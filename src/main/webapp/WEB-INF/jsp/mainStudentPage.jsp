@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="container">
-	  <h1>Dziękujemy za zalogowanie, ${loggedInStudent.imie}</h1>
+	  <h1>Dziękujemy za zalogowanie, ${loggedInUser.firstname}</h1>
     <h3><a href="students">Kliknij, aby zobaczyć listę studentów</a></h3>
 	</div>
 </body>

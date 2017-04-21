@@ -47,11 +47,4 @@
 	    class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 	    <property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-	<bean id="userRepository" class="virtualDeanery.model.repository.impl.UserRepositoryImpl">
-    <constructor-arg>
-        <ref bean="sessionFactory" />
-    </constructor-arg>
-	</bean>
-	
 </beans>
