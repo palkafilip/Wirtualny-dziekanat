@@ -35,10 +35,20 @@ public class LoginController
 			model.addAttribute("loginError", "Wyst¹pi³ b³ad przy logowaniu, spróbuj ponownie");
 			return "loginPage";
 		}
-
+		
 		session.setAttribute("loggedInUser", user);
+		System.out.println("Pierwszy " + session.getId());
 		return "mainStudentPage";
 
+	}
+	
+	@RequestMapping("/logout")
+	public String testMethod(Model model, HttpSession session)
+	{
+		System.out.println("Drugi "+session.getId());
+		
+		session.invalidate();
+		return "logoutPage";
 	}
 
 }
