@@ -5,11 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HomeController
+public class FinancesController
 {
-	@RequestMapping("/home")
-	public String homeController(Model model)
+	@RequestMapping("/finances")
+	public String financesController(Model model)
 	{
-		return "home";
+		return "finances";
 	}
 }

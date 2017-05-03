@@ -5,6 +5,7 @@
 <tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
     
-    <h1>Testowanie hyhyh</h1>    
+    <h1>Wiadomości</h1>
+        
     </tiles:putAttribute>
 </tiles:insertDefinition>

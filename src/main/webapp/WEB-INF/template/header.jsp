@@ -2,7 +2,7 @@
 <header class="header">
 	<div class="row">
 		<div class="col-md-7">
-			<div class="logo">Wirtualny Dziekanat</div>
+			<div class="logo"><a href="home.html">Wirtualny Dziekanat</a></div>
 		</div>
 		<div class="col-md-3">
 			<div class="username pull-right">${loggedInUser.firstname}
@@ -13,3 +13,4 @@
 					class="button pull-right">Wyloguj</button></a>
 		</div>
 	</div>
+</header>

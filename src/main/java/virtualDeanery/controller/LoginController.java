@@ -19,7 +19,7 @@ public class LoginController
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = {"/","/login"}, method = RequestMethod.GET)
 	public String showLoginForm()
 	{
 		return "loginPage";

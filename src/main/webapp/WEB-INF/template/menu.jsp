@@ -3,14 +3,14 @@
 <nav class="navbar" role="navigation">
 	<div class="container">
 		<ul class="menuList">
-			<li class="menuItem"><a href="test.html">Plan zajęć</a></li>
-			<li class="menuItem"><a href="#">Oceny</a></li>
-			<li class="menuItem"><a href="#">Wiadomości</a></li>
-			<li class="menuItem"><a href="#">Syllabus</a></li>
-			<li class="menuItem"><a href="#">Finanse</a></li>
-			<li class="menuItem"><a href="#">Podania</a></li>
-			<li class="menuItem"><a href="#">Prowadzący</a></li>
-			<li class="menuItem"><a href="#">Zmiana danych</a></li>
+			<li class="menuItem"><a href="timetable.html">Plan zajęć</a></li>
+			<li class="menuItem"><a href="grades.html">Oceny</a></li>
+			<li class="menuItem"><a href="messages.html">Wiadomości</a></li>
+			<li class="menuItem"><a href="syllabus.html">Syllabus</a></li>
+			<li class="menuItem"><a href="finances.html">Finanse</a></li>
+			<li class="menuItem"><a href="application.html">Podania</a></li>
+			<li class="menuItem"><a href="lecturers.html">Prowadzący</a></li>
+			<li class="menuItem"><a href="account.html">Zmiana danych</a></li>
 		</ul>
 	</div>
 </nav>
