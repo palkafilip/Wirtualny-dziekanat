@@ -38,7 +38,7 @@ public class LoginController
 		
 		session.setAttribute("loggedInUser", user);
 		System.out.println("Pierwszy " + session.getId());
-		return "mainStudentPage";
+		return "home";
 
 	}
 	

@@ -12,5 +12,11 @@ public class HomeController
 	{
 		return "redirect:/login";
 	}
-
+	
+	
+	@RequestMapping("/test")
+	public String test(Model model)
+	{
+		return "test";
+	}
 }
