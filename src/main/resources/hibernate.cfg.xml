@@ -6,6 +6,7 @@
 	<session-factory>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="show_sql">true</property>
+		<property name="hibernate.current_session_context_class">thread</property> <!-- te je nowe trzeba otwierac i zamykac transakcje -->
 		<mapping resource="virtualDeanery/model/User.hbm.xml" />
 		<mapping resource="virtualDeanery/model/User_Account.hbm.xml" />
 	</session-factory>
