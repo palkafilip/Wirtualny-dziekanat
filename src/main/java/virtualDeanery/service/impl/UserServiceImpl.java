@@ -63,4 +63,9 @@ public class UserServiceImpl implements UserService
 		return user_accRepository.getUser_AccountByNiu(niu);
 	}
 
+	public List<User> getUsersByLastName(String lastname) {
+		
+		return userRepository.getUsersByLastName(lastname);
+	}
+
 }

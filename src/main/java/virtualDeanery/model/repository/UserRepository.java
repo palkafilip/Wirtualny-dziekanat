@@ -7,4 +7,5 @@ import virtualDeanery.model.User;
 public interface UserRepository {
 	List <User> getAllUsers();
 	User getUserByNiu(int niu);
+	List <User> getUsersByLastName(String lastname);
 }

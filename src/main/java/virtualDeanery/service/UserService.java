@@ -9,6 +9,7 @@ public interface UserService
 {
 	List <User> getAllUsers();
 	User getUserByNiu(int niu);
+	List <User> getUsersByLastName(String lastname);
 	User loginUser(int niu, String password);
 	User loginUserTest(int niu, String imie);
 	User_Account getUser_AccountByNiu(int niu);
