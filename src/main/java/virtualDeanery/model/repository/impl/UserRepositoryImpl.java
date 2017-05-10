@@ -51,7 +51,7 @@ public class UserRepositoryImpl implements UserRepository
 	@Transactional
 	public void updateUser(User user){
 		
-		System.out.println("nowy" + user);
+		System.out.println("nowy : " + user);
 		//Transaction trans;
 		Session session = sessionFactory.getCurrentSession();
 		//trans = session.beginTransaction();
