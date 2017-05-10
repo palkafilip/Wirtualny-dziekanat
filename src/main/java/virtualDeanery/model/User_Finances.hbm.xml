@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="virtualDeanery.model">
+	<class name="User_Finances" table="USER_FINANCES">
+		<id name="idFinance" type="int" access="field">
+			<column name="IDFINANCE" />
+			<generator class="assigned" />
+		</id>
+		<property name="niu" type="int">
+			<column name="NIU" />
+		</property>
+		<property name="saldo" type="double">
+			<column name="SALDO" />
+		</property>
+		<property name="accountNumber" type="java.lang.String">
+			<column name="ACCOUNTNUMBER" />
+		</property>
+	</class>
+</hibernate-mapping>

@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import virtualDeanery.model.User;
 import virtualDeanery.model.User_Account;
+import virtualDeanery.model.User_Finances;
 import virtualDeanery.model.repository.UserRepository;
 import virtualDeanery.model.repository.User_AccountRepository;
+import virtualDeanery.model.repository.User_FinancesRepository;
 import virtualDeanery.service.UserService;
 
 @Service
@@ -19,6 +21,8 @@ public class UserServiceImpl implements UserService
 	UserRepository userRepository;
 	@Autowired
 	User_AccountRepository user_accRepository;
+	@Autowired
+	User_FinancesRepository userFinancesRepository;
 
 	public List<User> getAllUsers()
 	{
@@ -61,6 +65,12 @@ public class UserServiceImpl implements UserService
 	public User_Account getUser_AccountByNiu(int niu)
 	{
 		return user_accRepository.getUser_AccountByNiu(niu);
+	}
+
+	public List<User_Finances> getUser_FinancesByNiu(int niu)
+	{
+		
+		return userFinancesRepository.getUser_FinancesByNiu(niu);
 	}
 
 }
