@@ -8,6 +8,8 @@
 		<property name="show_sql">true</property>
 		<mapping resource="virtualDeanery/model/User.hbm.xml" />
 		<mapping resource="virtualDeanery/model/User_Account.hbm.xml" />
+		<mapping resource="virtualDeanery/model/Message.hbm.xml" />
+		<mapping resource="virtualDeanery/model/Msg_recipient.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>

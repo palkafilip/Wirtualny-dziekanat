@@ -50,9 +50,9 @@ public class UserRepositoryImpl implements UserRepository {
 	@Transactional
 	public List<User> getUsersByLastName(String lastname) {
 		List<User> listUser = null;
-		String sql = "from User where User.lastname="+lastname;
-		listUser = (List<User>) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.like("lastname", lastname))
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+	
+		//Pobieramy u¿ytkowników o danym nazwisku
+		listUser = (List<User>) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.like("lastname", lastname)).list();
 
 		return listUser;
 	}
