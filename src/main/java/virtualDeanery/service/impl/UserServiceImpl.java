@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import virtualDeanery.model.Transaction;
 import virtualDeanery.model.User;
 import virtualDeanery.model.User_Account;
 import virtualDeanery.model.User_Finances;
+import virtualDeanery.model.repository.TransactionRepository;
 import virtualDeanery.model.repository.UserRepository;
 import virtualDeanery.model.repository.User_AccountRepository;
 import virtualDeanery.model.repository.User_FinancesRepository;
@@ -23,6 +25,8 @@ public class UserServiceImpl implements UserService
 	User_AccountRepository user_accRepository;
 	@Autowired
 	User_FinancesRepository userFinancesRepository;
+	@Autowired
+	TransactionRepository transactionsRepository;
 
 	public List<User> getAllUsers()
 	{
@@ -67,10 +71,21 @@ public class UserServiceImpl implements UserService
 		return user_accRepository.getUser_AccountByNiu(niu);
 	}
 
-	public List<User_Finances> getUser_FinancesByNiu(int niu)
+	public User_Finances getUser_FinancesByNiu(int niu)
 	{
 		
 		return userFinancesRepository.getUser_FinancesByNiu(niu);
+	}
+
+	public List<Transaction> getUser_TransactionsByNiu(int niu)
+	{
+		User_Finances userFinances = userFinancesRepository.getUser_FinancesByNiu(niu);
+		
+		
+		System.out.println("IdFinance: " + userFinances.getIdFinance());
+		List<Transaction> list = transactionsRepository.getTransactionsByIdFinance(userFinances.getIdFinance());
+		
+		return list;
 	}
 
 }

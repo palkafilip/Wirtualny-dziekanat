@@ -1,6 +1,6 @@
 package virtualDeanery.controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import virtualDeanery.model.Transaction;
 import virtualDeanery.model.User;
 import virtualDeanery.model.User_Finances;
 import virtualDeanery.service.UserService;
@@ -25,17 +26,18 @@ public class FinancesController
 	{
 		User user = (User) session.getAttribute("loggedInUser");
 		
-		List<User_Finances> userFinancesList = null;
+		List<Transaction> transactionsList = userService.getUser_TransactionsByNiu(user.getId());
 		
-		userFinancesList = userService.getUser_FinancesByNiu(user.getId());
+//		userFinances = userService.getUser_FinancesByNiu(user.getId());
+//		
+//		if(userFinances == null)
+//			System.out.println("Pusta lista");
+//		
+//		else
+//			System.out.println("Hej hej tam w oddali" + userFinances);
 		
-		if(userFinancesList == null)
-			System.out.println("Pusta lista");
 		
-		else
-			System.out.println("Hej hej tam w oddali" + userFinancesList.get(0));
-		
-		
+		System.out.println(transactionsList);
 		return "finances";
 	}
 }

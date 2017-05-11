@@ -11,9 +11,6 @@
 		<property name="idFinance" type="int">
 			<column name="IDFINANCE" />
 		</property>
-		<property name="idFinance" type="int">
-			<column name="IDFINANCE" />
-		</property>
 		<property name="transferData" type="java.lang.String">
 			<column name="TRANSFERDATA" />
 		</property>
