@@ -3,9 +3,10 @@ package virtualDeanery.model.repository.impl;
 import java.util.List;
 import javax.sql.DataSource;
 import org.hibernate.Criteria;
-import org.hibernate.cfg.Configuration;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,6 +47,16 @@ public class UserRepositoryImpl implements UserRepository
 
 		System.out.println(user);
 		return user;
+	}
+	@Transactional
+	public void updateUser(User user){
+		
+		System.out.println("nowy : " + user);
+		//Transaction trans;
+		Session session = sessionFactory.getCurrentSession();
+		//trans = session.beginTransaction();
+		session.update(user);
+		//trans.commit();
 	}
 
 }

@@ -7,14 +7,26 @@ import virtualDeanery.model.User;
 import virtualDeanery.model.User_Account;
 import virtualDeanery.model.User_Finances;
 
-public interface UserService
-{
-	List <User> getAllUsers();
+public interface UserService {
+
+
 	User getUserByNiu(int niu);
+
 	User loginUser(int niu, String password);
+
 	User loginUserTest(int niu, String imie);
+
 	User_Account getUser_AccountByNiu(int niu);
+
 	User_Finances getUser_FinancesByNiu(int niu); 
 	List<Transaction> getUser_TransactionsByNiu(int niu);
-	
+
+
+
+	public void changeContactDetails(String newPhone, String newEmail, String newAddress, String newCity,
+			String newPost_code, User user);
+
+	public String changePassword(String currentPassword, String newPassword1, String newPassword2, User user);
+
+
 }
