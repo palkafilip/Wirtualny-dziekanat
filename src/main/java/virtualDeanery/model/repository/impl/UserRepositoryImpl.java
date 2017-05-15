@@ -67,7 +67,7 @@ public class UserRepositoryImpl implements UserRepository {
 		List<User> listUser = null;
 	
 		//Pobieramy u¿ytkowników o danym nazwisku
-		listUser = (List<User>) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.like("lastname", lastname)).list();
+		listUser = (List<User>) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.like("lastname", lastname)).add(Restrictions.like("account_type", "prowadzacy")).list();
 
 		return listUser;
 	}

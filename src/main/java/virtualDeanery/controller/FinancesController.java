@@ -38,6 +38,9 @@ public class FinancesController
 		
 		
 		System.out.println(transactionsList);
+		
+		model.addAttribute("transactions", transactionsList);
+		model.addAttribute("testowanko", "Bo nam nie dzia³a");
 		return "finances";
 	}
 }
