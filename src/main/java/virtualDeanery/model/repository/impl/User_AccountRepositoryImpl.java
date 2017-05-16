@@ -4,7 +4,11 @@ import javax.sql.DataSource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import org.hibernate.Transaction;
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,5 +41,18 @@ public class User_AccountRepositoryImpl implements User_AccountRepository
 		trans.commit();
 		System.out.println(user_acc);
 		return user_acc;
+	}
+	@Transactional
+	public void changePasssword(User_Account user_acc){
+		
+		System.out.println("nowy" + user_acc);
+		//Transaction trans;
+		Session session = sessionFactory.getCurrentSession();
+		//trans = session.beginTransaction();
+		
+		session.merge(user_acc);
+		
+		//trans.commit();
+		
 	}
 }

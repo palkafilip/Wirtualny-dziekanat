@@ -8,6 +8,7 @@
             <column name="NIU" />
             <generator class="assigned" />
         </id>
+       
         <property name="firstname" type="java.lang.String">
             <column name="FIRSTNAME" />
         </property>

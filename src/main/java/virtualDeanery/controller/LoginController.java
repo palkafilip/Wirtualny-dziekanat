@@ -19,7 +19,7 @@ public class LoginController
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = {"/","/login"}, method = RequestMethod.GET)
 	public String showLoginForm()
 	{
 		return "loginPage";
@@ -38,7 +38,7 @@ public class LoginController
 		
 		session.setAttribute("loggedInUser", user);
 		System.out.println("Pierwszy " + session.getId());
-		return "mainStudentPage";
+		return "forward:/home";
 
 	}
 	
