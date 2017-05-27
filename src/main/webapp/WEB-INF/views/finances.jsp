@@ -14,6 +14,7 @@
 				<td>${trans.transferData}</td>
 				<td>${trans.transDate}</td>
 				<td>${trans.status}</td>
+				<td>${trans.amount}</td>
 			</tr>
 			<br>
 		</c:forEach>

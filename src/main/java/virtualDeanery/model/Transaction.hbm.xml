@@ -20,5 +20,8 @@
 		<property name="status" type="int">
 			<column name="STATUS" />
 		</property>
+		<property name="amount" type="double">
+			<column name="AMOUNT" />
+		</property>
 	</class>
 </hibernate-mapping>
