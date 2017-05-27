@@ -10,6 +10,7 @@ public interface UserRepository {
 	User getUserByNiu(int niu);
 	public void updateUser(User user);
 	List <User> getUsersByLastName(String lastname);
+	public List<String> showMarksFromSemester(String semesterCode, int niu);
 }
 
 
