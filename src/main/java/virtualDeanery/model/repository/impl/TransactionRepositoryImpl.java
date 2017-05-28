@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import virtualDeanery.model.Transaction;
 import virtualDeanery.model.User_Finances;
 import virtualDeanery.model.repository.TransactionRepository;
@@ -37,8 +38,11 @@ public class TransactionRepositoryImpl implements TransactionRepository
 		List<Transaction> transactionsList = null;
 		
 		Session session = sessionFactory.getCurrentSession();
+		org.hibernate.Transaction trans = session.beginTransaction();
+		
 		transactionsList = (List<Transaction>) session.createCriteria(Transaction.class).add(Restrictions.like("idFinance", idFinance)).list();
 		
+		trans.commit();
 		return transactionsList;
 	}
 

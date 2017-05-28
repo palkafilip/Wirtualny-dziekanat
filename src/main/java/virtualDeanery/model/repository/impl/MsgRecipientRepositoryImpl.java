@@ -5,7 +5,9 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,8 +37,10 @@ public class MsgRecipientRepositoryImpl implements Msg_recipientRepository {
 		List<Msg_recipient> msgRecipientList;
 		
 		//Pobieramy obiektu klasy Msg_recipient dla zalogowanego u¿ytkownika
-		msgRecipientList = (List<Msg_recipient>) sessionFactory.getCurrentSession().createCriteria(Msg_recipient.class).add(Restrictions.like("niu_recipient", niu)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-		
+		Session session = sessionFactory.getCurrentSession();
+		Transaction trans = session.beginTransaction();
+		msgRecipientList = (List<Msg_recipient>) session.createCriteria(Msg_recipient.class).add(Restrictions.like("niu_recipient", niu)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		trans.commit();
 		return msgRecipientList;
 	}
 

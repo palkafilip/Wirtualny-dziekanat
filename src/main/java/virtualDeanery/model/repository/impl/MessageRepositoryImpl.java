@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,10 +50,12 @@ public class MessageRepositoryImpl implements MessageRepository {
 		/**
 		 * Pobieramy wszystkie wiadomoœci dla zalogowanego u¿ytkownika
 		 */
+		Session session = sessionFactory.getCurrentSession();
+		Transaction trans = session.beginTransaction();
 		for (int i = 0; i < msgRecipientList.size(); i++) {
-			listMessage.add((Message) sessionFactory.getCurrentSession().get(Message.class,msgRecipientList.get(i)));
+			listMessage.add((Message) session.get(Message.class,msgRecipientList.get(i)));
 		}
-		
+		trans.commit();
 		
 		return listMessage;
 	}

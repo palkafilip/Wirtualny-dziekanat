@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -37,8 +38,12 @@ public class User_FinancesRepositoryImpl implements User_FinancesRepository
 		System.out.println("Niu u¿ytkownika w repozytorium : " + niu);
 		User_Finances userFinances = null;
 		Session session = sessionFactory.getCurrentSession();
-		userFinances = (User_Finances) session.createCriteria(User_Finances.class).add(Restrictions.like("niu", niu)).list().get(0);
+		Transaction trans = session.beginTransaction();
+		List<User_Finances> finances=session.createCriteria(User_Finances.class).add(Restrictions.like("niu", niu)).list();
+		if(finances.isEmpty()) return null;
+		userFinances = (User_Finances) finances.get(0);
 //		userFinances = (User_Finances) session.get(User_Finances.class, niu);
+		trans.commit();
 		return userFinances;
 	}
 

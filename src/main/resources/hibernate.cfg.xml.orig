@@ -6,17 +6,21 @@
 	<session-factory>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="show_sql">true</property>
+<<<<<<< HEAD
+		<property name="hibernate.current_session_context_class">thread</property> <!-- te je nowe trzeba otwierac i zamykac transakcje -->
+=======
 		<property name="hibernate.connection.useUnicode">true</property> 
         <property name="hibernate.connection.characterEncoding">UTF-8</property> 
+>>>>>>> master
 		<mapping resource="virtualDeanery/model/User.hbm.xml" />
 		<mapping resource="virtualDeanery/model/User_Account.hbm.xml" />
-<<<<<<< HEAD
+
 		<mapping resource="virtualDeanery/model/User_Finances.hbm.xml" />
 		<mapping resource="virtualDeanery/model/Transaction.hbm.xml" />
-=======
+
 		<mapping resource="virtualDeanery/model/Message.hbm.xml" />
 		<mapping resource="virtualDeanery/model/Msg_recipient.hbm.xml" />
->>>>>>> searchLecturer
+
 	</session-factory>
 
 </hibernate-configuration>
