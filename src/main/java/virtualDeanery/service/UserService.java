@@ -30,7 +30,7 @@ public interface UserService {
 
 	public String changePassword(String currentPassword, String newPassword1, String newPassword2, User user);
 
-
+	public List<String> showMarksFromSemester(String semesterCode, int niu);
 }
 
 

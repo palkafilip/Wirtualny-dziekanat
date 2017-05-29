@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="virtualDeanery.model">
+    <class name="Mark" table="Marks">
+        <id name="markID" type="int" access="field">
+            <column name="markID" />
+            <generator class="assigned" />
+        </id>
+        <property name="niu" type="int">
+            <column name="NIU" />
+        </property>
+        <property name="acronym_subject" type="java.lang.String">
+            <column name="ACRONYM_SUBJECT" />
+        </property>
+        <property name="mark" type="double">
+            <column name="MARK" />
+        </property>
+        
+    </class>
+</hibernate-mapping>
