@@ -9,13 +9,13 @@ import javax.sql.DataSource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
+<<<<<<< HEAD
 import org.hibernate.Transaction;
-
+=======
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
-
+>>>>>>> applications
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -83,11 +83,8 @@ public class MessageRepositoryImpl implements MessageRepository {
 		message.setTitle("Wiadomoœæ prywatna");
 		message.setSend_date(date);
 		
-		
 		Session session = sessionFactory.getCurrentSession();
-		Transaction trans=session.beginTransaction();
-
-		try{
+		
 		session.save(message);
 		
 		//Zatwierdzamy zmiany (commit)
@@ -108,13 +105,6 @@ public class MessageRepositoryImpl implements MessageRepository {
 		//zapis do bazy danych
 		session.save(msg_recipient);
 		session.flush();
-		trans.commit();
-		}catch(Exception e){
-			System.out.println("Cosik nie tak jest dodawane");
-			trans.rollback();
-			
-		}
-
 	}
 
 }

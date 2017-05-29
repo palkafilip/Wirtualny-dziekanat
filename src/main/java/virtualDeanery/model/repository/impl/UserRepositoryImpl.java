@@ -18,7 +18,7 @@ import org.hibernate.criterion.Restrictions;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,10 +45,13 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Transactional
 	public List<User> getAllUsers() {
-		@SuppressWarnings("unchecked")
-		List<User> listUser = (List<User>) sessionFactory.getCurrentSession().createCriteria(User.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 
+		Session session = sessionFactory.getCurrentSession();
+		Transaction trans = session.beginTransaction();
+		@SuppressWarnings("unchecked")
+		List<User> listUser = (List<User>) session.createCriteria(User.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		trans.commit();
 		return listUser;
 	}
 
@@ -56,7 +59,9 @@ public class UserRepositoryImpl implements UserRepository {
 	public User getUserByNiu(int niu) {
 		User user = null;
 		Session session = sessionFactory.getCurrentSession();
+		Transaction trans = session.beginTransaction();
 		user = (User) session.get(User.class, niu);
+		trans.commit();
 
 		System.out.println(user);
 		return user;
@@ -65,11 +70,12 @@ public class UserRepositoryImpl implements UserRepository {
 	public void updateUser(User user){
 		
 		System.out.println("nowy : " + user);
-		//Transaction trans;
+
 		Session session = sessionFactory.getCurrentSession();
-		//trans = session.beginTransaction();
+		Transaction trans = session.beginTransaction();
 		session.update(user);
-		//trans.commit();
+		trans.commit();
+
 	}
 
 	
@@ -77,10 +83,11 @@ public class UserRepositoryImpl implements UserRepository {
 	@Transactional
 	public List<User> getUsersByLastName(String lastname) {
 		List<User> listUser = null;
-	
+		Session session = sessionFactory.getCurrentSession();
+		Transaction trans = session.beginTransaction();
 		//Pobieramy u¿ytkowników o danym nazwisku
-		listUser = (List<User>) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.like("lastname", lastname)).add(Restrictions.like("account_type", "prowadzacy")).list();
-
+		listUser = (List<User>) session.createCriteria(User.class).add(Restrictions.like("lastname", lastname)).add(Restrictions.like("account_type", "prowadzacy")).list();
+		trans.commit();
 		return listUser;
 	}
 	
@@ -90,10 +97,14 @@ public class UserRepositoryImpl implements UserRepository {
 		List<String> marksList = new LinkedList<String>();
 		List<Subject> subjects = null;
 		List<Mark> marks = null;
+		Session session = sessionFactory.getCurrentSession();
+		Transaction trans = session.beginTransaction();
 		
-		subjects = sessionFactory.getCurrentSession().createCriteria(Subject.class).add(Restrictions.like("semester_code", semesterCode)).list();
-		marks = sessionFactory.getCurrentSession().createCriteria(Mark.class).add(Restrictions.like("niu", niu)).add(Restrictions.like("acronym_subject", "%")).addOrder(Order.asc("acronym_subject")).list();
+		subjects = session.createCriteria(Subject.class).add(Restrictions.like("semester_code", semesterCode)).list();
+		marks = session.createCriteria(Mark.class).add(Restrictions.like("niu", niu)).add(Restrictions.like("acronym_subject", "%")).addOrder(Order.asc("acronym_subject")).list();
 	
+		trans.commit();
+		
 		for(Subject s : subjects){
 			for(Mark m : marks){
 				if(m.getAcronym_subject().equals(s.getAcronym_subject())){

@@ -1,16 +1,22 @@
 package test;
 
+import virtualDeanery.model.Mark;
+import virtualDeanery.model.Message;
 import virtualDeanery.model.Msg_recipient;
+import virtualDeanery.model.User;
 import virtualDeanery.model.User_Account;
 import virtualDeanery.model.repository.impl.MessageRepositoryImpl;
 import virtualDeanery.model.repository.impl.MsgRecipientRepositoryImpl;
 import virtualDeanery.model.repository.impl.TransactionRepositoryImpl;
+import virtualDeanery.model.repository.impl.UserRepositoryImpl;
 import virtualDeanery.model.repository.impl.User_AccountRepositoryImpl;
 import virtualDeanery.model.repository.impl.User_FinancesRepositoryImpl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-import org.apache.catalina.User;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -46,20 +52,20 @@ public class LogingTest {
 		configuration.setProperty("hibernate.connection.username", "root");
 		configuration.setProperty("hibernate.connection.password", "");
 		configuration.addResource("virtualDeanery/model/User_Account.hbm.xml");
-	
-
+		configuration.addResource("virtualDeanery/model/Mark.hbm.xml");
+		configuration.addResource("virtualDeanery/model/Message.hbm.xml");
+		configuration.addResource("virtualDeanery/model/Msg_recipient.hbm.xml");
+		configuration.addResource("virtualDeanery/model/Subject.hbm.xml");
+		configuration.addResource("virtualDeanery/model/Transaction.hbm.xml");
+		configuration.addResource("virtualDeanery/model/User_Finances.hbm.xml");
+		configuration.addResource("virtualDeanery/model/User.hbm.xml");
+		
+		
+		
 		ServiceRegistry srb = new StandardServiceRegistryBuilder()
 				.applySettings(configuration.getProperties()).build();
 		
 		sessionFactory = configuration.buildSessionFactory(srb);
-
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 	
@@ -86,7 +92,7 @@ public class LogingTest {
 
 		
 		Assert.assertTrue(msgrec.getMessagesByNiu(0).isEmpty());
-		Assert.assertNotNull(message.getAllMessagesByNiu(1234, msgrec.getMessagesByNiu(1234)));
+		Assert.assertNotNull(message.getAllMessagesByNiu(1002, msgrec.getMessagesByNiu(1002)));
 	}
 	
 	@Test
@@ -104,6 +110,111 @@ public class LogingTest {
 		Assert.assertNull(finances.getUser_FinancesByNiu(0));
 		//System.out.println(finances.getUser_FinancesByNiu(0));
 	}
+	
+//	@Test
+	public void send_messages_test() throws Exception{
+		MessageRepositoryImpl message = new MessageRepositoryImpl(sessionFactory);
+		MsgRecipientRepositoryImpl msgrec = new MsgRecipientRepositoryImpl(sessionFactory);
+		List<Message> listaMSG;
+		List<Msg_recipient> listaREC;
+		boolean content=false;
+		boolean title=false;
+		boolean sender=false;
+		boolean date=false;
+		boolean id=false;
+		int msgID=0;
+		message.sendMessage(1004, 1002, "test");
+		listaMSG= message.getAllMessagesByNiu(1002, msgrec.getMessagesByNiu(1002));
+		for(Message m: listaMSG){
+			if(m.getContent().equals("test")){
+				content=true;
+				msgID=m.getMsg_id();
+				if(m.getTitle().equals("Wiadomo?? prywatna")) title=true;
+				if(m.getNiu_sender()==1004) sender=true;
+				if(m.getSend_date().equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date()))) date=true;
+			}
+		}
+		Assert.assertTrue(content);
+		Assert.assertTrue(title);
+		Assert.assertTrue(sender);
+		Assert.assertTrue(date);
+		
+		listaREC=msgrec.getMessagesByNiu(1002);
+		for(Msg_recipient m: listaREC){
+			if(m.getMsg_id()==msgID) id=true;
+		}
+		Assert.assertTrue(id);
+	}
+	
+//	@Test
+	public void null_msg_test() throws Exception{
+		MessageRepositoryImpl message = new MessageRepositoryImpl(sessionFactory);
+		MsgRecipientRepositoryImpl msgrec = new MsgRecipientRepositoryImpl(sessionFactory);
+		List<Message> listaMSG;
+		List<Msg_recipient> listaREC;
+		
+		try{
+			message.sendMessage(0, 0, null);
+		}catch(Exception e){
+			Assert.fail(e.getMessage());
+		}
+		
+		message.sendMessage(0, 0, "");
+		listaMSG= message.getAllMessagesByNiu(0, msgrec.getMessagesByNiu(0));
+		for(Message m: listaMSG){
+			if(m.getNiu_sender()==0) Assert.fail("Niu_sedner = 0");
+				
+		}
+		
+		listaREC=msgrec.getMessagesByNiu(1002);
+		for(Msg_recipient m: listaREC){
+			if(m.getMsg_id()==0) Assert.fail("Niu_recipient = 0");
+		}		
+		
+	}
+	
+	@Test
+	public void User_test(){
+		UserRepositoryImpl userRepo = new UserRepositoryImpl(sessionFactory);
+		User user;
+		Assert.assertNotNull(user=userRepo.getUserByNiu(1005));
+		
+		
+		user.setAccount_type("student");
+		user.setAddress("ul. Wielka 5");
+		user.setCity("Zakliczyn");
+		user.setPost_code("76-098");
+		user.setEmail("grzepcio0957@onet.pl");
+		user.setFirstname("Marcjusz");
+		user.setLastname("Grzebcio");
+		user.setPesel("89678912654");
+		user.setPhone("234098123");
+		
+		userRepo.updateUser(user);
+		Assert.assertEquals(userRepo.getUserByNiu(1005), user);
+		Assert.assertNotNull("Brak u¿ytkowników", userRepo.getAllUsers());
+		Assert.assertFalse("Brak studenta o nazwisku Mostowiak", userRepo.getUsersByLastName("Mostowiak").isEmpty());	
+	}
+	
+	
+	@Test
+	public void User_Marks_test(){
+		UserRepositoryImpl userRepo = new UserRepositoryImpl(sessionFactory);
+		List<String> lista=userRepo.showMarksFromSemester("2017_1", 1002);
+		Assert.assertFalse("brak ocen dla niu 1002", lista.isEmpty());
+		boolean ocena=false;
+		
+		for(String s: lista){
+			if(s.equals("Matematyka : 4.0")) ocena=true;
+			System.out.println(s);
+		}
+		
+		
+		Assert.assertTrue("Brak oceny w bazie dla niu 1002", ocena);
+		
+	}
+	
+	
 	
 	@After
 
