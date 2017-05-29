@@ -137,5 +137,11 @@ public class UserServiceImpl implements UserService {
 		
 		return userRepository.getUsersByLastName(lastname);
 	}
+	
+	public List<String> showMarksFromSemester(String semesterCode, int niu){
+		
+		return userRepository.showMarksFromSemester(semesterCode, niu);
+		
+	}
 
 }

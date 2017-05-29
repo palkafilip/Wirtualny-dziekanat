@@ -16,6 +16,9 @@
 
 		<mapping resource="virtualDeanery/model/Message.hbm.xml" />
 		<mapping resource="virtualDeanery/model/Msg_recipient.hbm.xml" />
+		
+		<mapping resource="virtualDeanery/model/Subject.hbm.xml" />
+		<mapping resource="virtualDeanery/model/Mark.hbm.xml" />
 
 	</session-factory>
 

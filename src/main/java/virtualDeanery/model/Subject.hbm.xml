@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="virtualDeanery.model">
+    <class name="Subject" table="SUBJECT">
+        <id name="acronym_subject" type="java.lang.String" access="field">
+            <column name="ACRONYM_SUBJECT" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="hours" type="int">
+            <column name="HOURS" />
+        </property>
+        <property name="ects" type="int">
+            <column name="ECTS" />
+        </property>
+        <property name="semester_code" type="java.lang.String">
+            <column name="SEMESTER_CODE" />
+        </property>
+    </class>
+</hibernate-mapping>
