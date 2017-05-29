@@ -16,7 +16,7 @@
             <div class="form-group">
             Telefon: 
             ${loggedInUser.getPhone()}
-                <input type="text" class="form-control" placeholder="Wprowadź nowy numer telefonu"  name="phone">
+                <input type="text" class="form-control" placeholder="Wprowadź nowy numer telefonu" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="phone">
             </div>
             <div class="form-group">
             E-mail: 
