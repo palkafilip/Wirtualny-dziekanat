@@ -27,4 +27,8 @@ public class MessageServiceImpl implements MessageService {
 		return messageRepository.getAllMessagesByNiu(niu,msgRecipientList);
 	}
 
+	public void sendMessage(int senderNiu, int receiverNiu, String messageText) {
+		messageRepository.sendMessage(senderNiu, receiverNiu, messageText);
+	}
+
 }

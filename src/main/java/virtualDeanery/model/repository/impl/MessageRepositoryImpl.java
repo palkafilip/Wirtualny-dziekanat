@@ -1,11 +1,17 @@
 package virtualDeanery.model.repository.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,6 +60,45 @@ public class MessageRepositoryImpl implements MessageRepository {
 		
 		
 		return listMessage;
+	}
+
+	@Transactional
+	public void sendMessage(int senderNiu, int receiverNiu, String messageText) {
+		
+		Message lastMessage = new Message();
+
+		//Pobieramy akrualna datê i konwertujemy j¹ do Stringa
+		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		System.out.println("Data: "+date);
+		
+		Message message = new Message();
+		message.setNiu_sender(senderNiu);
+		message.setContent(messageText);
+		message.setTitle("Wiadomoœæ prywatna");
+		message.setSend_date(date);
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.save(message);
+		
+		//Zatwierdzamy zmiany (commit)
+		session.flush();
+		
+		//Kryterium do pobrania max msg_id
+		DetachedCriteria maxId = DetachedCriteria.forClass(Message.class).setProjection( Projections.max("msg_id") );
+		
+		//Ostatnia dodana wiadomoœæ
+		lastMessage = (Message) session.createCriteria(Message.class).add( Property.forName("msg_id").eq(maxId) ).uniqueResult();
+		
+		//Tworzenie obiektu msg_recipient
+		Msg_recipient msg_recipient = new Msg_recipient();
+		msg_recipient.setIs_read(0);
+		msg_recipient.setMsg_id(lastMessage.getMsg_id());
+		msg_recipient.setNiu_recipient(receiverNiu);
+		
+		//zapis do bazy danych
+		session.save(msg_recipient);
+		session.flush();
 	}
 
 }
