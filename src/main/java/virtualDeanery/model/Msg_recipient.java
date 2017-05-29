@@ -29,7 +29,5 @@ public class Msg_recipient {
 	public String toString() {
 		return "msg_recipient [niu_recipient=" + niu_recipient + ", msg_id=" + msg_id + ", is_read=" + is_read + "]";
 	}
-	
-	
 
 }

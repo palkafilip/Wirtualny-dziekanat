@@ -46,6 +46,4 @@ public class Message {
 				+ ", niu_sender=" + niu_sender + "]";
 	}
 	
-	
-
 }
