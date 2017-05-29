@@ -21,15 +21,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class LogingTest {
-
-	User_Account usc= new User_Account();
-	
-	User_AccountRepositoryImpl user_accRepository;
-	
-	MessageRepositoryImpl message;
-	MsgRecipientRepositoryImpl msgrec;
-	TransactionRepositoryImpl transrepo;
-	User_FinancesRepositoryImpl finances;
 	
 	
 	
@@ -40,8 +31,7 @@ public class LogingTest {
 	
 	@Before
 	public void setup(){
-		usc.setNiu(1234);
-		usc.setPassword("haslo");
+
 		
 		// setup the session factory
 
@@ -63,12 +53,11 @@ public class LogingTest {
 		
 		sessionFactory = configuration.buildSessionFactory(srb);
 
-		user_accRepository= new User_AccountRepositoryImpl(sessionFactory);
 		
-		msgrec = new MsgRecipientRepositoryImpl(sessionFactory);
-		message = new MessageRepositoryImpl(sessionFactory);
-		transrepo= new TransactionRepositoryImpl(sessionFactory);
-		finances= new User_FinancesRepositoryImpl(sessionFactory);
+		
+		
+		
+		
 		
 		
 		
@@ -76,19 +65,33 @@ public class LogingTest {
 	
 	@Test
 	public void user_account_test_for_loging(){
-		Assert.assertNotNull(user_accRepository.getUser_AccountByNiu(1234));
-		Assert.assertEquals(user_accRepository.getUser_AccountByNiu(1234), usc);
+		User_Account usc= new User_Account();
+		usc.setNiu(1002);
+		usc.setPassword("marian");
+		User_AccountRepositoryImpl user_accRepository= new User_AccountRepositoryImpl(sessionFactory);
+		
+		Assert.assertNotNull(user_accRepository.getUser_AccountByNiu(1002));
+		Assert.assertEquals(user_accRepository.getUser_AccountByNiu(1002), usc);
 		
 	}
 	
+	
+	
+	
 	@Test
 	public void message_test(){
+		MessageRepositoryImpl message = new MessageRepositoryImpl(sessionFactory);
+		MsgRecipientRepositoryImpl msgrec = new MsgRecipientRepositoryImpl(sessionFactory);
+		
+
+		
 		Assert.assertTrue(msgrec.getMessagesByNiu(0).isEmpty());
 		Assert.assertNotNull(message.getAllMessagesByNiu(1234, msgrec.getMessagesByNiu(1234)));
 	}
 	
 	@Test
 	public void tarnsaction_test(){
+		TransactionRepositoryImpl transrepo= new TransactionRepositoryImpl(sessionFactory);
 		Assert.assertTrue(transrepo.getTransactionsByIdFinance(0).isEmpty());
 		Assert.assertNotNull(transrepo.getTransactionsByIdFinance(2));
 		
@@ -97,8 +100,9 @@ public class LogingTest {
 	
 	@Test
 	public void user_Finances_test(){
+		User_FinancesRepositoryImpl finances= new User_FinancesRepositoryImpl(sessionFactory);
 		Assert.assertNull(finances.getUser_FinancesByNiu(0));
-	
+		//System.out.println(finances.getUser_FinancesByNiu(0));
 	}
 	
 	@After
