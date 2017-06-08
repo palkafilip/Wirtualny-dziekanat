@@ -13,7 +13,7 @@
 					placeholder="Wpisz kod semestru" name="semesterCode">
 			</div>
 
-			<button type="submit" class="btn btn-default button">Pokaż oceny z semestru</button>
+			<button type="submit" class="btn btn-default button">Pokaż oceny</button>
 		</form>
 		
 		<p> ${error} <p>

@@ -89,6 +89,11 @@
   list-style: none;
 }
 
+.list .listItem
+{
+	margin-top: 30px;
+}
+
 .list .listItem a img
 {
 	width: 50px;
@@ -105,6 +110,58 @@
   font-weight: 700;
 }
 
+.form .form-group .form-control
+{
+	margin-top: 20px;
+	width: 350px;
+}
+
+.form .button
+{
+	margin-top: 10px;
+	width: 140px;
+	height: 40px;
+}
+
+textarea 
+{
+	resize: none;
+}
+
+.single-form:first-child
+{
+	margin-top: 40px;
+}
+
+.single-form
+{
+	margin-top: 10px;
+}
+
+.single-form p
+{
+	margin: 0;
+}
+
+.form .single-form .form-control
+{
+	margin-top: 10px;
+	width: 350px;
+}
+
+.header1
+{
+	margin-top: 40px;
+}
+
+#appForm
+{
+	margin-top: 40px;
+}
+.fileInput
+{
+	padding: 20px 0;
+}
 .footer
 {
   display: flex;

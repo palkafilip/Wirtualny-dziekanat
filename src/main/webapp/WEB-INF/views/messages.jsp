@@ -12,7 +12,7 @@
                 <input type="text" class="form-control" placeholder="Wprowadź niu adresata" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="niu">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder= "Treść wiadomości" name="messageText">
+                <textarea class="form-control" name="messageText" cols="10" rows="5" placeholder="Treść wiadomości"></textarea>
             </div>
             
             <button type="submit" class="btn btn-default button">Wyślij</button>

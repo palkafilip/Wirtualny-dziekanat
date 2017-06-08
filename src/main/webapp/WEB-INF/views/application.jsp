@@ -8,22 +8,19 @@
     <tiles:putAttribute name="body">
     
     <h1>Podania</h1>
-    
-    <div class="form-group">
-    <a href="<c:url value='resources/applications/dkEnergetyka.doc' /> " > Dług kredytowy Energetyka:<img src="<c:url value='resources/icons/doc_icon.png' /> "style= "width:50px;height:50px;"></a>
-    </div>
-    <div class="form-group">
-    <a href="<c:url value='resources/applications/dkInformatyka.doc' /> " > Dług kredytowy Informatyka:<img src="<c:url value='resources/icons/doc_icon.png' /> "style= "width:50px;height:50px;"></a>
-    </div>
-    <div class="form-group">
-    <a href="<c:url value='resources/applications/przepisanie.doc' /> " > Przepisanie oceny:<img src="<c:url value='resources/icons/doc_icon.png' /> "style= "width:50px;height:50px;"></a>
-    </div>
+
+   
+    <ul class="list">
+		<li class="listItem"><a href="<c:url value='resources/applications/dkEnergetyka.doc' /> " >Dług kredytowy Energetyka:<img src="<c:url value='resources/icons/doc_icon.png' /> " alt=""></a></li>
+		<li class="listItem"><a href="<c:url value='resources/applications/dkInformatyka.doc' /> ">Dług kredytowy Informatyka:<img src="<c:url value='resources/icons/doc_icon.png' /> " alt=""></a></li>
+		<li class="listItem"><a href="<c:url value='resources/applications/przepisanie.doc' /> " >Przepisanie oceny:<img src="<c:url value='resources/icons/doc_icon.png' /> " alt=""></a></li>
+	</ul>
     
     
-    <h1>Wstaw podanie</h1>
-    <form method="POST" action="upload" enctype="multipart/form-data">
-    <input type="file" name="file" /><br/>
-    <input type="submit" value="Wyślij" />
+    <h1 class="header1">Wstaw podanie</h1>
+    <form id="appForm" class="form" method="POST" action="upload" enctype="multipart/form-data">
+    <input type="file" class="fileInput" name="file" />
+    <input type="submit" class="btn btn-default button" value="Wyślij" />
 </form>
     
     <p> ${message}</p>
