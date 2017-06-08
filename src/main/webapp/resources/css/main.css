@@ -82,6 +82,18 @@
   margin: 0;
   color: #444c5c;
 }
+.list
+{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list .listItem a img
+{
+	width: 50px;
+	height: 50px;
+}
 
 .table
 {
