@@ -29,6 +29,8 @@ public class UserServiceImpl implements UserService {
 	User_FinancesRepository userFinancesRepository;
 	@Autowired
 	TransactionRepository transactionsRepository;
+	
+	
 
 	public List<User> getAllUsers() {
 		return userRepository.getAllUsers();
@@ -159,6 +161,25 @@ public class UserServiceImpl implements UserService {
 	{
 		return userRepository.getUserNameByNiu(niu);
 	}
+
+	
+	public void addUser(String firstName, String lastName, String pesel, String address, String city, String post_code,
+			String email, String phone, String account_type, String password1, String password2) {
+		
+		userRepository.createUser(firstName, lastName, pesel, address, city, post_code, email, phone, account_type);
+		user_accRepository.createUserAccount(password1);
+		
+	}
+
+	public boolean deleteUser(int niu) {
+		user_accRepository.deleteUserAccount(niu);
+
+		userRepository.deleteUser(niu);
+		
+		return true;
+	}
+
+
 	
 	
 
