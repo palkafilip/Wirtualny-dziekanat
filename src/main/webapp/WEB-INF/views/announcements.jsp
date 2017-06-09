@@ -11,6 +11,9 @@
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Wprowadź id grupy" name="idGroup">
             </div>
+             <div class="form-group">
+                <input type="text" class="form-control" placeholder="Tytuł" name="title">
+            </div>
             <div class="form-group">
                 <textarea class="form-control" name="annonText" cols="10" rows="5" placeholder="Treść ogłoszenia"></textarea>
             </div>

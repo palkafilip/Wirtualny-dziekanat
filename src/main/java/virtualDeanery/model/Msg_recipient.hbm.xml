@@ -4,8 +4,8 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="virtualDeanery.model">
     <class name="Msg_recipient" table="MSG_RECIPIENT">
-        <id name="msg_id" type="int" access="field">
-            <column name="MSG_ID" />
+        <id name="mr_id" type="int" access="field">
+            <column name="MR_ID" />
             <generator class="assigned" />
         </id>
         <property name="niu_recipient" type="int">
@@ -13,6 +13,9 @@
         </property>
         <property name="is_read" type="int">
             <column name="IS_READ" />
+        </property>
+        <property name="msg_id" type="int">
+            <column name="msg_id" />
         </property>
     </class>
 </hibernate-mapping>

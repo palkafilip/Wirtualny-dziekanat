@@ -10,6 +10,6 @@ public interface MessageService {
 	
 	void sendMessage(int senderNiu, int receiverNiu, String messageText);
 	
-	public void sendAnnon(int senderNiu, String idGroup, String annonText);
+	public void sendAnnon(int senderNiu, String idGroup, String annonText, String title);
 
 }

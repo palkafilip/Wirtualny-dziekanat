@@ -5,6 +5,7 @@ public class Msg_recipient {
 	private int niu_recipient;
 	private int msg_id;
 	private int is_read;
+	private int mr_id;
 	
 	public int getNiu_recipient() {
 		return niu_recipient;
@@ -23,6 +24,12 @@ public class Msg_recipient {
 	}
 	public void setIs_read(int is_read) {
 		this.is_read = is_read;
+	}
+	public int getMr_id() {
+		return mr_id;
+	}
+	public void setMr_id(int mr_id) {
+		this.mr_id = mr_id;
 	}
 	
 	@Override

@@ -25,14 +25,14 @@ public class AnnouncementsController
 	}
 	
 	@RequestMapping(value = "/sendAnnon", method = RequestMethod.POST)
-	public String sendAnnon(@RequestParam String idGroup, @RequestParam String annonText, Model model, HttpSession session) {
+	public String sendAnnon(@RequestParam String idGroup, @RequestParam String annonText, @RequestParam String title, Model model, HttpSession session) {
 
 		User currentUser = (User) session.getAttribute("loggedInUser");
 		
-		messageService.sendAnnon(currentUser.getId(), idGroup, annonText);
+		messageService.sendAnnon(currentUser.getId(), idGroup, annonText,title);
 		
 		model.addAttribute("message", "Og³oszenie zosta³o dodane");
-		return "messages";
+		return "announcements";
 	}
 
 }

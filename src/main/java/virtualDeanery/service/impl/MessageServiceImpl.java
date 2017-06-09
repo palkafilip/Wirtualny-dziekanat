@@ -31,8 +31,8 @@ public class MessageServiceImpl implements MessageService {
 		messageRepository.sendMessage(senderNiu, receiverNiu, messageText);
 	}
 	
-	public void sendAnnon(int senderNiu, String idGroup, String annonText) {
-		messageRepository.sendAnnon(senderNiu, idGroup, annonText);
+	public void sendAnnon(int senderNiu, String idGroup, String annonText, String title) {
+		messageRepository.sendAnnon(senderNiu, idGroup, annonText, title);
 	}
 
 }
