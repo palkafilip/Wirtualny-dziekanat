@@ -1,7 +1,9 @@
 
 package virtualDeanery.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -138,10 +140,26 @@ public class UserServiceImpl implements UserService {
 		return userRepository.getUsersByLastName(lastname);
 	}
 	
-	public List<String> showMarksFromSemester(String semesterCode, int niu){
+	public Map<String, String> showMarksFromSemester(String semesterCode, int niu){
 		
-		return userRepository.showMarksFromSemester(semesterCode, niu);
+		List<String> marksList = userRepository.showMarksFromSemester(semesterCode, niu);
+		Map<String, String> marksMap = new HashMap<String,String>();
 		
+		for(int i=0; i<marksList.size(); i++)
+		{
+			String[] temp = marksList.get(i).split(":");
+			
+			marksMap.put(temp[0], temp[1]);
+		}
+		
+		return marksMap;
 	}
+
+	public String getUserNameByNiu(int niu)
+	{
+		return userRepository.getUserNameByNiu(niu);
+	}
+	
+	
 
 }

@@ -28,19 +28,15 @@ public class FinancesController
 		
 		List<Transaction> transactionsList = userService.getUser_TransactionsByNiu(user.getId());
 		
-//		userFinances = userService.getUser_FinancesByNiu(user.getId());
-//		
-//		if(userFinances == null)
-//			System.out.println("Pusta lista");
-//		
-//		else
-//			System.out.println("Hej hej tam w oddali" + userFinances);
-		
-		
-		System.out.println(transactionsList);
+		if(transactionsList.isEmpty())
+		{
+			model.addAttribute("errorMessage", "Brak finansów");
+			return "finances";
+		}
 		
 		model.addAttribute("transactions", transactionsList);
-		model.addAttribute("testowanko", "Bo nam nie dzia³a");
+
+		System.out.println(transactionsList);
 		return "finances";
 	}
 }

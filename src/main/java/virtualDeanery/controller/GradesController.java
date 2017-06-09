@@ -1,6 +1,8 @@
 package virtualDeanery.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,15 +30,14 @@ public class GradesController {
 	public String changePassword(@RequestParam String semesterCode, HttpSession session, Model model) {
 		
 		User user = (User) session.getAttribute("loggedInUser");
-		List<String> marksList = (userService).showMarksFromSemester(semesterCode, user.getId());
-		
-		if(marksList.isEmpty()){
+		Map<String, String> marksMap = (userService).showMarksFromSemester(semesterCode, user.getId());
+				
+		if(marksMap.isEmpty()){
 			model.addAttribute("error","Brak ocen");
 			return "grades";
 		}
 		
-		model.addAttribute("grades",marksList);
+		model.addAttribute("grades",marksMap);
 		return "grades";
-
 	}
 }

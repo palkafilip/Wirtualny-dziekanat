@@ -162,6 +162,10 @@ textarea
 {
 	padding: 20px 0;
 }
+.pError
+{
+	margin-top: 15px;
+}
 .footer
 {
   display: flex;

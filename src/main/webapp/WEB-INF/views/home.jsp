@@ -11,18 +11,18 @@
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<td class="col-md-1">Nadawca</td>
+					<td class="col-md-2">Nadawca</td>
 					<td class="col-md-2">Tytuł</td>
-					<td class="col-md-7">Wiadomość</td>
+					<td class="col-md-6">Wiadomość</td>
 					<td class="col-md-2">Data</td>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${messageResult}" var="message">
+				<c:forEach items="${messageResult}" var="message" varStatus="status">
 					<tr>
-						<td class="col-md-1">${message.getNiu_sender()}</td>
+						<td class="col-md-2">${sendersNames[status.index]}</td>
 						<td class="col-md-2">${message.getTitle()}</td>
-						<td class="col-md-7">${message.getContent()}</td>
+						<td class="col-md-6">${message.getContent()}</td>
 						<td class="col-md-2">${message.getSend_date()}</td>
 					</tr>
 				</c:forEach>

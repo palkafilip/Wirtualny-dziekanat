@@ -61,6 +61,18 @@ public class UserRepositoryImpl implements UserRepository {
 		System.out.println(user);
 		return user;
 	}
+	
+	@Transactional
+	public String getUserNameByNiu(int niu) {
+		User user = null;
+		String name = null;
+		
+		Session session = sessionFactory.getCurrentSession();
+		user = (User) session.get(User.class, niu);
+		name = user.getFirstname() + " " + user.getLastname();
+		System.out.println(name);
+		return name;
+	}
 	@Transactional
 	public void updateUser(User user){
 		

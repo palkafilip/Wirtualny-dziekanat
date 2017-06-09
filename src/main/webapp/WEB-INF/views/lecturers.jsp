@@ -13,19 +13,35 @@
 					placeholder="Wpisz nazwisko prowadzącego" name="lastname">
 			</div>
 			<button type="submit" class="btn btn-default button">Wyszukaj</button>
-			<p>${errorMessage}</p>
+			<p class="pError">${errorMessage}</p>
 		</form>
 
-<c:forEach items="${lecturersResult}" var="lecturer">
-    <tr>      
-        <td>${lecturer.getFirstname()}</td>
-        <td>${lecturer.getLastname()}</td>
-        <td>${lecturer.getEmail()}</td>
-        <td>${lecturer.getPhone()}</td>
-    </tr>
-    <br>
-</c:forEach>
-	
+
+		<c:choose>
+			<c:when test="${lecturersResult.isEmpty() == false}">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<td class="col-md-3">Imię</td>
+							<td class="col-md-3">Nazwisko</td>
+							<td class="col-md-3">Email</td>
+							<td class="col-md-3">Numer tel</td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${lecturersResult}" var="lecturer">
+							<tr>
+								<td class="col-md-3">${lecturer.getFirstname()}</td>
+								<td class="col-md-3">${lecturer.getLastname()}</td>
+								<td class="col-md-3">${lecturer.getEmail()}</td>
+								<td class="col-md-3">${lecturer.getPhone()}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</c:when>
+		</c:choose>
+
 
 	</tiles:putAttribute>
 </tiles:insertDefinition>
