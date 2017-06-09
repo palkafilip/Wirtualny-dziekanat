@@ -12,9 +12,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import virtualDeanery.model.Group_User;
 import virtualDeanery.model.Message;
 import virtualDeanery.model.Msg_recipient;
 import virtualDeanery.model.repository.MessageRepository;
@@ -99,6 +102,66 @@ public class MessageRepositoryImpl implements MessageRepository {
 		//zapis do bazy danych
 		session.save(msg_recipient);
 		session.flush();
+	}
+	
+	@Transactional
+	public void sendMsgToMany(int senderNiu, List<Group_User> niuRecevierList, String messageText) {
+		
+		Message lastMessage = new Message();
+
+		//Pobieramy akrualna datê i konwertujemy j¹ do Stringa
+		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		System.out.println("Data: "+date);
+		
+		Message message = new Message();
+		message.setNiu_sender(senderNiu);
+		message.setContent(messageText);
+		message.setTitle("Og³oszenie");
+		message.setSend_date(date);
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.save(message);
+		
+		//Zatwierdzamy zmiany (commit)
+		session.flush();
+		
+		//Kryterium do pobrania max msg_id
+		DetachedCriteria maxId = DetachedCriteria.forClass(Message.class).setProjection( Projections.max("msg_id") );
+		
+		//Ostatnia dodana wiadomoœæ
+		lastMessage = (Message) session.createCriteria(Message.class).add( Property.forName("msg_id").eq(maxId) ).uniqueResult();
+		
+		
+		
+		for( Group_User gu : niuRecevierList){
+			//Tworzenie obiektu msg_recipient
+			Msg_recipient msg_recipient = new Msg_recipient();
+			msg_recipient.setIs_read(0);
+			msg_recipient.setMsg_id(lastMessage.getMsg_id());
+			msg_recipient.setNiu_recipient(gu.getNiu());
+			
+			System.out.println("GU niu: " + gu.getNiu());
+			//zapis do bazy danych
+			
+			session.save(msg_recipient);
+			
+		}
+		
+		//session.flush();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public void sendAnnon(int senderNiu, String idGroup, String annonText){
+		
+		Session session = sessionFactory.getCurrentSession();
+		List<Group_User> niuRecevierList;
+		
+		niuRecevierList = (List<Group_User>) session.createCriteria(Group_User.class).add(Restrictions.like("group_id", idGroup)).list();
+		
+		sendMsgToMany(senderNiu,niuRecevierList , annonText);
+		
 	}
 
 }
