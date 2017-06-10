@@ -1,5 +1,7 @@
 package virtualDeanery.controller;
 
+import java.time.LocalDate;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,11 @@ public class LoginController
 	UserService userService;
 
 	@RequestMapping(value = {"/","/login"}, method = RequestMethod.GET)
-	public String showLoginForm()
+	public String showLoginForm(Model model)
 	{
+		String ld = LocalDate.now().toString();
+		model.addAttribute("date", ld);
+		
 		return "loginPage";
 	}
 
@@ -29,6 +34,9 @@ public class LoginController
 	public String verifyLogin(@RequestParam int niu, @RequestParam String password, HttpSession session, Model model)
 	{
 		User user = userService.loginUser(niu, password);
+		
+		String ld = LocalDate.now().toString();
+		model.addAttribute("date", ld);
 
 		if (user == null)
 		{

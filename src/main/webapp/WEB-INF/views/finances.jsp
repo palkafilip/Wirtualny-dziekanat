@@ -6,9 +6,9 @@
 	<tiles:putAttribute name="body">
 
 		<h1>Finanse</h1>
-		
+
 		<p>${errorMessage}</p>
-		
+
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
@@ -25,12 +25,21 @@
 						<td class="col-md-2">${trans.idTransaction}</td>
 						<td class="col-md-3">${trans.transferData}</td>
 						<td class="col-md-3">${trans.transDate}</td>
-						<td class="col-md-2">${trans.status}</td>
+						<c:choose>
+							<c:when test="${trans.status == 0}">
+								<td class="col-md-2">Nieopłacone</td>
+							</c:when>
+						</c:choose>
+						<c:choose>
+							<c:when test="${trans.status == 1}">
+								<td class="col-md-2">Opłacone</td>
+							</c:when>
+						</c:choose>
 						<td class="col-md-2">${trans.amount}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-
+		
 	</tiles:putAttribute>
 </tiles:insertDefinition>

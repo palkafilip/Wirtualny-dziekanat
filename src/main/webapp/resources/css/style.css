@@ -4,21 +4,78 @@
   font-size: 18px;
 }
 
+html, body 
+{
+  height: 100%;
+}
+
+body 
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.content 
+{
+  flex: 1;
+}
+
 .container
 {
   margin: 0 auto;
   text-align: center;
 }
 
-.header-page
+.header
+{
+  background-color: #e1b16a;
+}
+
+.header .container
+{
+  display: flex;
+  padding: 70px 0;
+  color: #ffffff;
+}
+
+.header .container h1
+{
+  flex: 1;
+  text-align: left;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 1px 1px 0px rgba(14, 16, 14, 0.5);
+}
+.header .container p
+{
+  font-size: 20px;
+  text-align: right;
+  margin: 0;
+  flex: 1;
+  text-shadow: 1px 1px 0px rgba(14, 16, 14, 0.3);
+  
+}
+
+.container .welcomeText
 {
   margin-top: 70px;
+}
+.container .welcomeText h2
+{
+  font-size: 20px;
+  padding: 15px 0;
+  color: #444c5c;
+}
+
+.header-page
+{
   color: #444c5c;
 }
 
 .form
 {
-  margin: 35px 0 0 0;
+  margin: 30px 0;
 }
 .form-group
 {
@@ -33,32 +90,76 @@
 
 .button
 {
-  margin-top: 20px;
   width: 100px;
-  padding: 10px 5px;
-  font-size: 14px;
 }
 
 .btn-default:hover
 {
   color: #ffffff;
   background-color: #e1b16a;
-  border-color: #ffffff;
+  border-color: #adadad;
 }
 
-.container .backMain
+.container p
 {
 	margin-top: 20px;
 }
 
-.container .backMain a 
+#logoutBody
 {
-	text-decoration: none;
-	color: #444c5c;
+	background-color: #e1b16a;
 }
 
-.container .backMain a:hover
+.msgContainer
 {
-	color: #e1b16a;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  justify-content: center;
+}
+
+.msgContainer .logoutMsg
+{
+	color: #ffffff;
+	text-shadow: 1px 1px 1px rgba(14, 16, 14, 0.5);
+}
+
+.msgContainer p
+{
+	margin-top: 20px;
+	
+}
+
+.msgContainer p a
+{
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: 1px 1px 1px rgba(14, 16, 14, 0.2);
+}
+
+.footer
+{
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  height: 200px;
+  background-color: #444c5c;
+}
+
+.footer .container
+{
+  margin: 0;
+}
+.footer .container p
+{
+  color: #ffffff;
+}
+
+
+.pError
+{
+	margin-top: 15px;
 }
 

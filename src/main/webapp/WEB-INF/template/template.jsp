@@ -20,7 +20,7 @@
 	</div>
 	<tiles:insertAttribute name="menu" />
 
-	<div class="content">
+	<div class="middle">
 		<div class="container">
 			<tiles:insertAttribute name="body" />
 		</div>

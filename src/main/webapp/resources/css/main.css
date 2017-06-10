@@ -4,6 +4,27 @@
   font-size: 18px;
 }
 
+html, body 
+{
+  height: 100%;
+}
+
+body 
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.middle
+{
+	flex: 1 0 auto;
+	padding: 70px 0;
+}
+
+.navbar
+{
+	flex: none;
+}
 .container
 {
   max-width: 1000px;
@@ -69,12 +90,6 @@
 {
   text-decoration: none;
   font-weight: 700;
-}
-
-.content
-{
-  min-height: 100%;
-  padding: 70px 0;
 }
 
 .container .h1
@@ -156,11 +171,12 @@ textarea
 
 #appForm
 {
-	margin-top: 40px;
+	margin-top: 20px;
 }
 .fileInput
 {
-	padding: 20px 0;
+	padding: 10px 0 20px 0;
+    margin: 0;
 }
 .pError
 {
@@ -168,6 +184,7 @@ textarea
 }
 .footer
 {
+  flex: none;
   display: flex;
   align-items: center;
   width: 100%;

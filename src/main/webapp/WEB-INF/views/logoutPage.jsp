@@ -14,10 +14,10 @@
     
 </head>
 
-<body>
-    <div class="container">
-        <h1 class="header-page">Zostałeś poprawnie wylogowany</h1>
-        <p class="backMain"><a href="login.html">Kliknij, aby przejść na stronę główną</a></p>
+<body id="logoutBody">
+    <div class="msgContainer">
+        <h1 class="logoutMsg">Zostałeś poprawnie wylogowany</h1>
+        <p><a href="login.html">Kliknij, aby przejść na stronę główną</a></p>
     </div>
 </body>
 
