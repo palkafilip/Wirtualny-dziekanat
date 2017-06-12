@@ -12,13 +12,18 @@
 		<mapping resource="virtualDeanery/model/User_Account.hbm.xml" />
 
 		<mapping resource="virtualDeanery/model/User_Finances.hbm.xml" />
-		<mapping resource="virtualDeanery/model/Transaction.hbm.xml" />
-
+		<mapping resource="virtualDeanery/model/Transaction.hbm.xml" />		
+		
 		<mapping resource="virtualDeanery/model/Message.hbm.xml" />
 		<mapping resource="virtualDeanery/model/Msg_recipient.hbm.xml" />
 		
 		<mapping resource="virtualDeanery/model/Subject.hbm.xml" />
 		<mapping resource="virtualDeanery/model/Mark.hbm.xml" />
+		<mapping resource="virtualDeanery/model/Group.hbm.xml" />
+		<mapping resource="virtualDeanery/model/Group_User.hbm.xml" />
+		
+		
+		
 
 	</session-factory>
 

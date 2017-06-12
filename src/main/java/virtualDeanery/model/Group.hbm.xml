@@ -3,20 +3,19 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="virtualDeanery.model">
-    <class name="Mark" table="Marks">
-        <id name="markID" type="int" access="field">
-            <column name="markID" />
-            <generator class="increment" />
+    <class name="Group" table="GROUPS">
+        <id name="group_id" type="java.lang.String" access="field">
+            <column name="GROUP_ID" />
+            <generator class="assigned" />
         </id>
-        <property name="niu" type="int">
-            <column name="NIU" />
-        </property>
         <property name="acronym_subject" type="java.lang.String">
             <column name="ACRONYM_SUBJECT" />
         </property>
-        <property name="mark" type="double">
-            <column name="MARK" />
+        <property name="time" type="java.lang.String">
+            <column name="TIME" />
         </property>
-        
+        <property name="niu_instructor" type="int">
+            <column name="NIU_INSTRUCTOR" />
+        </property>
     </class>
 </hibernate-mapping>
