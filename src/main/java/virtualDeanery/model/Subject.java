@@ -38,6 +38,10 @@ public class Subject {
 		this.semester_code = semester_code;
 	}
 	
+	public String toString(){
+		return name;
+	}
+	
 	
 	
 }

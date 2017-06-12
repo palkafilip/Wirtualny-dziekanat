@@ -7,6 +7,23 @@ public class Mark {
 	private String acronym_subject;
 	private double mark;
 	
+	public Mark(){
+		
+	}
+	
+	public Mark(int id, int niu, String acronym_subject, double mark) {
+		this.markID = id;
+		this.niu = niu;
+		this.acronym_subject = acronym_subject;
+		this.mark = mark;
+	}
+	
+	public Mark(int niu, String acronym_subject, double mark) {
+		
+		this.niu = niu;
+		this.acronym_subject = acronym_subject;
+		this.mark = mark;
+	}
 	public int getMarkID() {
 		return markID;
 	}
