@@ -48,12 +48,13 @@ public class StudentsGradesController
 			model.addAttribute("error","Brak przedmiotów do wyœwietlenia");
 			return "studentsGrades";
 		}
-		
+		if(subjectsList.size() > 1){
 		for(Subject s1: subjectsList){
 			for(Subject s2: subjectsList)
 				if(s1.getAcronym_subject().equals(s2.getAcronym_subject())){
 					subjectsList.remove(s2);
 				}
+		}
 		}
 		
 		model.addAttribute("instructorSubjects",subjectsList);

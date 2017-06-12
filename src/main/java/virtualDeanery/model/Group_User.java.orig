@@ -24,5 +24,8 @@ public class Group_User {
 		return "Group_User [niu=" + niu + ", group_id=" + group_id + "]";
 	}
 
+<<<<<<< HEAD
 }
-
+=======
+}
+>>>>>>> a9d26468f57faf2f266ec2cda2a08de0231ef1a3
