@@ -7,6 +7,7 @@ public class Transaction
 	private String transferData;
 	private String transDate;
 	private int status;
+	private double amount;
 	
 	
 	public int getIdTransaction()
@@ -49,12 +50,21 @@ public class Transaction
 	{
 		this.status = status;
 	}
+	public double getAmount()
+	{
+		return amount;
+	}
+	public void setAmount(double amount)
+	{
+		this.amount = amount;
+	}
 	@Override
 	public String toString()
 	{
 		return "Transaction [idTransaction=" + idTransaction + ", idFinance=" + idFinance + ", transferData="
-				+ transferData + ", transDate=" + transDate + ", status=" + status + "]";
+				+ transferData + ", transDate=" + transDate + ", status=" + status + ", amount=" + amount + "]";
 	}
+
 	
 	
 }

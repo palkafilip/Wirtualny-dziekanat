@@ -1,7 +1,9 @@
 
 package virtualDeanery.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,8 @@ public class UserServiceImpl implements UserService {
 	User_FinancesRepository userFinancesRepository;
 	@Autowired
 	TransactionRepository transactionsRepository;
+	
+	
 
 	public List<User> getAllUsers() {
 		return userRepository.getAllUsers();
@@ -138,10 +142,45 @@ public class UserServiceImpl implements UserService {
 		return userRepository.getUsersByLastName(lastname);
 	}
 	
-	public List<String> showMarksFromSemester(String semesterCode, int niu){
+	public Map<String, String> showMarksFromSemester(String semesterCode, int niu){
 		
-		return userRepository.showMarksFromSemester(semesterCode, niu);
+		List<String> marksList = userRepository.showMarksFromSemester(semesterCode, niu);
+		Map<String, String> marksMap = new HashMap<String,String>();
+		
+		for(int i=0; i<marksList.size(); i++)
+		{
+			String[] temp = marksList.get(i).split(":");
+			
+			marksMap.put(temp[0], temp[1]);
+		}
+		
+		return marksMap;
+	}
+
+	public String getUserNameByNiu(int niu)
+	{
+		return userRepository.getUserNameByNiu(niu);
+	}
+
+	
+	public void addUser(String firstName, String lastName, String pesel, String address, String city, String post_code,
+			String email, String phone, String account_type, String password1, String password2) {
+		
+		userRepository.createUser(firstName, lastName, pesel, address, city, post_code, email, phone, account_type);
+		user_accRepository.createUserAccount(password1);
 		
 	}
+
+	public boolean deleteUser(int niu) {
+		user_accRepository.deleteUserAccount(niu);
+
+		userRepository.deleteUser(niu);
+		
+		return true;
+	}
+
+
+	
+	
 
 }

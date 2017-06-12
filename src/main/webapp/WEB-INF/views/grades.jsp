@@ -13,17 +13,34 @@
 					placeholder="Wpisz kod semestru" name="semesterCode">
 			</div>
 
-			<button type="submit" class="btn btn-default button">Pokaż oceny z semestru</button>
+			<button type="submit" class="btn btn-default button">Pokaż
+				oceny</button>
 		</form>
-		
-		<p> ${error} <p>
 
-	<c:forEach items="${grades}" var="grade">
-			<tr>
-				<td>${grade}</td>
-			</tr>
-			<br>
-	</c:forEach>
+		<p class="pError">${error}
+		<p>
 
+			<c:choose>
+				<c:when test="${grades.isEmpty() == false}">
+
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<td class="col-md-6">Przedmiot</td>
+								<td class="col-md-6">Ocena</td>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${grades}" var="grade">
+								<tr>
+									<td class="col-md-2">${grade.key}</td>
+									<td class="col-md-2">${grade.value}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+
+				</c:when>
+			</c:choose>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

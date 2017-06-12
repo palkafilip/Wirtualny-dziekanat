@@ -66,6 +66,18 @@ public class UserRepositoryImpl implements UserRepository {
 		System.out.println(user);
 		return user;
 	}
+	
+	@Transactional
+	public String getUserNameByNiu(int niu) {
+		User user = null;
+		String name = null;
+		
+		Session session = sessionFactory.getCurrentSession();
+		user = (User) session.get(User.class, niu);
+		name = user.getFirstname() + " " + user.getLastname();
+		System.out.println(name);
+		return name;
+	}
 	@Transactional
 	public void updateUser(User user){
 		
@@ -115,6 +127,36 @@ public class UserRepositoryImpl implements UserRepository {
 
 		return marksList;
 		
+	}
+	
+	@Transactional
+	public void createUser(String firstName, String lastName, String pesel, String address, String city,
+			String post_code, String email, String phone, String account_type) {
+		
+		User user = new User();
+		user.setFirstname(firstName);
+		user.setLastname(lastName);
+		user.setPesel(pesel);
+		user.setAddress(address);
+		user.setCity(city);
+		user.setPost_code(post_code);
+		user.setEmail(email);
+		user.setPhone(phone);
+		user.setAccount_type(account_type);
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.save(user);
+		session.flush();
+		
+	}
+
+	@Transactional
+	public void deleteUser(int niu) {
+		Session session = sessionFactory.getCurrentSession();
+		User user  = (User)session.load(User.class,niu);
+	    session.delete(user);
+	    session.flush() ;
 	}
 
 }
