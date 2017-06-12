@@ -46,7 +46,7 @@ public class LoginController
 		
 		session.setAttribute("loggedInUser", user);
 		System.out.println("Pierwszy " + session.getId());
-		return "forward:/home";
+		return "home";
 
 	}
 	
