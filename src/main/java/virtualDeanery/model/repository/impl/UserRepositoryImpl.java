@@ -117,5 +117,35 @@ public class UserRepositoryImpl implements UserRepository {
 		return marksList;
 		
 	}
+	
+	@Transactional
+	public void createUser(String firstName, String lastName, String pesel, String address, String city,
+			String post_code, String email, String phone, String account_type) {
+		
+		User user = new User();
+		user.setFirstname(firstName);
+		user.setLastname(lastName);
+		user.setPesel(pesel);
+		user.setAddress(address);
+		user.setCity(city);
+		user.setPost_code(post_code);
+		user.setEmail(email);
+		user.setPhone(phone);
+		user.setAccount_type(account_type);
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.save(user);
+		session.flush();
+		
+	}
+
+	@Transactional
+	public void deleteUser(int niu) {
+		Session session = sessionFactory.getCurrentSession();
+		User user  = (User)session.load(User.class,niu);
+	    session.delete(user);
+	    session.flush() ;
+	}
 
 }

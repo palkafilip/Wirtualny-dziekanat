@@ -23,6 +23,11 @@
 					<li class="menuItem"><a href="announcements.html">Zarządzaj ogłoszeniami</a></li>
 					<li class="menuItem"><a href="account.html">Zmiana danych</a></li>
 				</c:when>
+				<c:when test="${loggedInUser.getAccount_type().equals('admin')}">
+					<li class="menuItem"><a href="addUser.html">Dodaj konto</a></li>
+					<li class="menuItem"><a href="editUser.html">Edytuj konto</a></li>
+					<li class="menuItem"><a href="deleteUser.html">Usuń konto</a></li>
+				</c:when>
 			</c:choose>
 		</ul>
 	</div>

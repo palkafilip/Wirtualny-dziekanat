@@ -10,8 +10,11 @@ import virtualDeanery.model.User_Account;
 import virtualDeanery.model.User_Finances;
 
 public interface UserService {
+	
+	public void addUser(String firstName, String lastName,String pesel, String address, String city, String post_code, String email, String phone, String account_type, String password1, String password2);
 
-
+	public boolean deleteUser(int niu);
+	
 	User getUserByNiu(int niu);
 	
 	String getUserNameByNiu(int niu);
