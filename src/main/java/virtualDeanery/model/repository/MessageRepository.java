@@ -9,4 +9,5 @@ public interface MessageRepository {
 
 	List<Message> getAllMessagesByNiu(int niu,List<Msg_recipient> msgGetRecipientList);
 	public void sendMessage(int senderNiu, int receiverNiu, String messageText);
+	public void sendAnnon(int senderNiu, String idGroup, String annonText, String title);
 }

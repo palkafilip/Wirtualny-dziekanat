@@ -23,6 +23,7 @@
 		
 		<mapping resource="virtualDeanery/model/Subject.hbm.xml" />
 		<mapping resource="virtualDeanery/model/Mark.hbm.xml" />
+		<mapping resource="virtualDeanery/model/Group_User.hbm.xml" />
 
 	</session-factory>
 
