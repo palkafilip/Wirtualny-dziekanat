@@ -73,7 +73,7 @@ public class LogingTest {
 	public void user_account_test_for_loging(){
 		User_Account usc= new User_Account();
 		usc.setNiu(1002);
-		usc.setPassword("marian");
+		usc.setPassword("student");
 		User_AccountRepositoryImpl user_accRepository= new User_AccountRepositoryImpl(sessionFactory);
 		
 		Assert.assertNotNull(user_accRepository.getUser_AccountByNiu(1002));
@@ -111,7 +111,7 @@ public class LogingTest {
 		//System.out.println(finances.getUser_FinancesByNiu(0));
 	}
 	
-//	@Test
+	@Test
 	public void send_messages_test() throws Exception{
 		MessageRepositoryImpl message = new MessageRepositoryImpl(sessionFactory);
 		MsgRecipientRepositoryImpl msgrec = new MsgRecipientRepositoryImpl(sessionFactory);
@@ -177,10 +177,10 @@ public class LogingTest {
 	public void User_test(){
 		UserRepositoryImpl userRepo = new UserRepositoryImpl(sessionFactory);
 		User user;
-		Assert.assertNotNull(user=userRepo.getUserByNiu(1005));
+		Assert.assertNotNull(user=userRepo.getUserByNiu(1004));
 		
 		
-		user.setAccount_type("student");
+		user.setAccount_type("prowadzacy");
 		user.setAddress("ul. Wielka 5");
 		user.setCity("Zakliczyn");
 		user.setPost_code("76-098");
@@ -191,9 +191,9 @@ public class LogingTest {
 		user.setPhone("234098123");
 		
 		userRepo.updateUser(user);
-		Assert.assertEquals(userRepo.getUserByNiu(1005), user);
+		Assert.assertEquals(userRepo.getUserByNiu(1004), user);
 		Assert.assertNotNull("Brak u¿ytkowników", userRepo.getAllUsers());
-		Assert.assertFalse("Brak studenta o nazwisku Mostowiak", userRepo.getUsersByLastName("Mostowiak").isEmpty());	
+		Assert.assertFalse("Brak studenta o nazwisku Mostowiak", userRepo.getUsersByLastName("Grzebcio").isEmpty());	
 	}
 	
 	
@@ -214,6 +214,54 @@ public class LogingTest {
 		
 	}
 	
+	
+	@Test
+	public void createUser_and_deleteUser_test(){
+		UserRepositoryImpl userRepo = new UserRepositoryImpl(sessionFactory);
+		userRepo.createUser("Janusz", "Cebula", "78562309421", "Wokowice 1", "Brzesko", "34-123", "cebula@janusz.pl", "563123987", "prowadzacy");
+		Assert.assertFalse(userRepo.getUsersByLastName("Cebula").isEmpty());
+	//	userRepo.deleteUser(1005);
+	//	Assert.assertTrue(userRepo.getUsersByLastName("Cebula").isEmpty());
+	}
+	
+	
+	@Test
+	public void sendToMany_test(){
+		MessageRepositoryImpl message = new MessageRepositoryImpl(sessionFactory);
+		MsgRecipientRepositoryImpl msgrec = new MsgRecipientRepositoryImpl(sessionFactory);
+		List<Message> listaMSG;
+		List<Msg_recipient> listaREC;
+		
+		boolean content=false;
+		boolean title=false;
+		boolean sender=false;
+		boolean date=false;
+		boolean id=false;
+		int msgID=0;
+		message.sendAnnon(1004, "MT_G2_P", "test dla wszystkich", "test 1004");
+		listaMSG= message.getAllMessagesByNiu(1002, msgrec.getMessagesByNiu(1002));
+		for(Message m: listaMSG){
+			System.out.println("wiadomosc: "+m.getContent());
+			
+			if(m.getContent().equals("test dla wszystkich")){
+				content=true;
+				msgID=m.getMsg_id();
+				if(m.getTitle().equals("test 1004")) title=true;
+				if(m.getNiu_sender()==1004) sender=true;
+				if(m.getSend_date().equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date()))) date=true;
+			}
+		}
+		Assert.assertTrue(content);
+		Assert.assertTrue(title);
+		Assert.assertTrue(sender);
+		Assert.assertTrue(date);
+		
+		listaREC=msgrec.getMessagesByNiu(1002);
+		for(Msg_recipient m: listaREC){
+			if(m.getMsg_id()==msgID) id=true;
+		}
+		Assert.assertTrue(id);
+	}
 	
 	
 	@After

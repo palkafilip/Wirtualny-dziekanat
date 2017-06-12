@@ -10,11 +10,10 @@ import org.hibernate.Transaction;
 
 
 
-=======
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
->>>>>>> 9459cbd35295f3fc57217e02322cb589280bae9a
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,20 +53,20 @@ public class User_AccountRepositoryImpl implements User_AccountRepository
 	public void changePasssword(User_Account user_acc){
 		
 		System.out.println("nowy" + user_acc);
-		//Transaction trans;
+		Transaction trans;
 		Session session = sessionFactory.getCurrentSession();
-		//trans = session.beginTransaction();
+		trans = session.beginTransaction();
 		
 		session.merge(user_acc);
 		
-		//trans.commit();
+		trans.commit();
 		
 	}
 
 	@Transactional
 	public void createUserAccount(String password) {
 		Session session = sessionFactory.getCurrentSession();
-		
+		Transaction trans=session.beginTransaction();
 		//Kryterium do pobrania max niu
 		DetachedCriteria maxniu = DetachedCriteria.forClass(User.class).setProjection( Projections.max("niu") );
 		
@@ -79,18 +78,20 @@ public class User_AccountRepositoryImpl implements User_AccountRepository
 		
 		session.save(user_Account);
 		session.flush();
-		
+		trans.commit();
 	}
 
 	@Transactional
 	public boolean deleteUserAccount(int niu) {
 		Session session = sessionFactory.getCurrentSession();
+		Transaction trans=session.beginTransaction();
 		User_Account user_Account  = (User_Account)session.load(User_Account.class,niu);
 		if(user_Account == null){
 			return false;
 		}
 	    session.delete(user_Account);
 	    session.flush();
+	    trans.commit();
 	    return true;
 	}
 }

@@ -143,20 +143,24 @@ public class UserRepositoryImpl implements UserRepository {
 		user.setEmail(email);
 		user.setPhone(phone);
 		user.setAccount_type(account_type);
+
+
 		
 		Session session = sessionFactory.getCurrentSession();
-		
+		Transaction trans= session.beginTransaction();
 		session.save(user);
 		session.flush();
-		
+		trans.commit();
 	}
 
 	@Transactional
 	public void deleteUser(int niu) {
 		Session session = sessionFactory.getCurrentSession();
+		Transaction trans= session.beginTransaction();
 		User user  = (User)session.load(User.class,niu);
 	    session.delete(user);
-	    session.flush() ;
+	    session.flush();
+	    trans.commit();
 	}
 
 }

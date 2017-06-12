@@ -124,7 +124,7 @@ public class MessageRepositoryImpl implements MessageRepository {
 	}
 	
 	@Transactional
-	public void sendMsgToMany(int senderNiu, List<Group_User> niuRecevierList, String messageText, Session session, String title) {
+	public void sendMsgToMany(int senderNiu, List<Group_User> niuRecevierList, String messageText, Session session, String title, Transaction trans) {
 		
 		Message lastMessage = new Message();
 		Msg_recipient lastrec;
@@ -140,7 +140,7 @@ public class MessageRepositoryImpl implements MessageRepository {
 		message.setSend_date(date);
 		
 		//Session session = sessionFactory.getCurrentSession();
-		
+	
 		session.save(message);
 		
 		//Zatwierdzamy zmiany (commit)
@@ -172,11 +172,14 @@ public class MessageRepositoryImpl implements MessageRepository {
 			//zapis do bazy danych
 			
 			session.save(msg_recipient);
+			session.flush();
+			trans.commit();
 
 			
 		}
+	
 		
-		//session.flush();
+		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -184,11 +187,11 @@ public class MessageRepositoryImpl implements MessageRepository {
 	public void sendAnnon(int senderNiu, String idGroup, String annonText, String title){
 		
 		Session session = sessionFactory.getCurrentSession();
+		Transaction trans=session.beginTransaction();
 		List<Group_User> niuRecevierList;
 		
 		niuRecevierList = (List<Group_User>) session.createCriteria(Group_User.class).add(Restrictions.like("group_id", idGroup)).list();
-		
-		sendMsgToMany(senderNiu,niuRecevierList , annonText, session, title);
+		sendMsgToMany(senderNiu,niuRecevierList , annonText, session, title, trans);
 		
 	}
 
