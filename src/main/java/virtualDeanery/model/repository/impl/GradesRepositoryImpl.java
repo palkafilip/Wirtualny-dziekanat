@@ -118,7 +118,10 @@ public class GradesRepositoryImpl implements GradesRepository{
 			System.out.println("newMarks counte: "  + newMarks.get(counter));
 			if(newMarks.get(counter) > 1.0){
 				List<Mark> temp2Mark = sessionFactory.getCurrentSession().createCriteria(Mark.class).add(Restrictions.like("niu", sm.getNiu())).add(Restrictions.like("acronym_subject", sm.getAcronym_subject())).list();
-				Mark tempMark = temp2Mark.get(0);
+				Mark tempMark = null;
+				if(temp2Mark.size() > 0){
+				   tempMark = temp2Mark.get(0);
+				}
 				if(tempMark == null)
 					sessionFactory.getCurrentSession().merge(new Mark(sm.getNiu(), sm.getAcronym_subject(), newMarks.get(counter)));
 				else

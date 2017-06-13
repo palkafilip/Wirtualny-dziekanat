@@ -33,7 +33,7 @@
                 <input type="text" class="form-control" placeholder="Wpisz swóje NIU" name="niu">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Wpisz swoje hasło" name="password">
+                <input type="password" class="form-control" placeholder="Wpisz swoje hasło" name="password">
             </div>
             <button type="submit" class="btn btn-default button">Zaloguj</button>
             <p class="pError">${loginError}</p>

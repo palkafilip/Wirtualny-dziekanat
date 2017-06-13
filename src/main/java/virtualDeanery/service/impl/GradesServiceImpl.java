@@ -49,12 +49,15 @@ public class GradesServiceImpl  implements GradesService{
 		List<StudentsMarks> studentsMarksList = new LinkedList<StudentsMarks>();
 		int counter = 0;
 		
-		for(User stL: studentsList){			
+		for(User stL: studentsList){
 			if(stL.getId() == marksList.get(counter).getNiu())
 				studentsMarksList.add(new StudentsMarks(stL.getId(), stL.getFirstname(), stL.getLastname(), marksList.get(counter).getAcronym_subject(), marksList.get(counter).getMark()));
 			else
 				studentsMarksList.add(new StudentsMarks(stL.getId(), stL.getFirstname(), stL.getLastname(), marksList.get(counter).getAcronym_subject(), 0.));
-			counter++;			
+			if(counter < marksList.size()-1){
+				counter++;	
+			}
+					
 		}
 		
 		return studentsMarksList;
