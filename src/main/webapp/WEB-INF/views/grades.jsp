@@ -17,8 +17,7 @@
 				oceny</button>
 		</form>
 
-		<p class="pError">${error}
-		<p>
+		<p class="pError">${error}<p>
 
 			<c:choose>
 				<c:when test="${grades.isEmpty() == false}">

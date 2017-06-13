@@ -75,7 +75,7 @@
 			<button type="submit" class="btn btn-default button">Dodaj</button>
 		</form>
 
-<p>${message}<p>
+<p class="pError">${message}<p>
 
 	</tiles:putAttribute>
 </tiles:insertDefinition>

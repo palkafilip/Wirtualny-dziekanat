@@ -16,7 +16,7 @@
 			<button type="submit" class="btn btn-default button">Usuń konto</button>
 		</form>
 
-<p>${message}<p>
+<p class="pError">${message}<p>
 
 	</tiles:putAttribute>
 </tiles:insertDefinition>

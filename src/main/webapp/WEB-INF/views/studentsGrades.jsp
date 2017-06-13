@@ -13,12 +13,12 @@
 					placeholder="Wpisz kod semestru" name="semesterCode">
 			</div>
 
-			<button type="submit" class="btn btn-default button">Pokaż listę przedmiotów</button>
+			<button type="submit" class="btn btn-default button">Przedmioty</button>
 			
 			
 		</form>
 		
-		<p> ${error} <p>
+		<p class="pError"> ${error} <p>
 		
 	<form class="form" action="cSubject" method="post">
 		<div class="form-group">

@@ -31,7 +31,7 @@ public class HomeController
 		List<Message> listMessage = messageService.getAllMessages(currentUser.getId());
 		
 		List<String> sendersNames = new ArrayList<String>();
-		
+	
 		if(listMessage.isEmpty()){
 			model.addAttribute("errorMessage", "Brak nowych wiadomoœci");
 			return "home";

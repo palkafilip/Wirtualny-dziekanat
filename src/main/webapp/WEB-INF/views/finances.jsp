@@ -7,7 +7,7 @@
 
 		<h1>Finanse</h1>
 
-		<p>${errorMessage}</p>
+		<p class="pError">${errorMessage}</p>
 
 		<table class="table table-bordered table-hover">
 			<thead>

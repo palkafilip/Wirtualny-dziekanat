@@ -36,7 +36,7 @@
                 <input type="text" class="form-control" placeholder="Wpisz swoje hasło" name="password">
             </div>
             <button type="submit" class="btn btn-default button">Zaloguj</button>
-            <p>${loginError}</p>
+            <p class="pError">${loginError}</p>
         </form>
     </div>
     <footer class="footer">

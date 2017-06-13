@@ -23,7 +23,7 @@
     <input type="submit" class="btn btn-default button" value="Wyślij" />
 </form>
     
-    <p> ${message}</p>
+    <p class="pError"> ${message}</p>
     
     </tiles:putAttribute>
 </tiles:insertDefinition>
